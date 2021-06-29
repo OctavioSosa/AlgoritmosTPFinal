@@ -10,7 +10,9 @@
 
 using namespace std;
 
-
+/* \brief Constructor inicializa las variables privadas de la clase cola.
+ *        El ancho de banda se designa aleatoriamente.
+ */
 Cola::Cola( int _routerOrigen, int _routerDestino )
 {
     routerOrigen  = _routerOrigen;
@@ -19,7 +21,8 @@ Cola::Cola( int _routerOrigen, int _routerDestino )
     //list<struct paq> cola;
 }
 
-
+/* \brief Imprime todos los paquetes de la cola
+ */
 void Cola::print(){
 
     list<struct paquete>::iterator it;
@@ -34,11 +37,26 @@ void Cola::print(){
 
 }
 
-
+/* \brief Agrega el paquete paq a la cola.
+ * \param paq: paquete que se desea agregar.
+ */
 void Cola::agregarPaquete(struct paquete paq)
 {
     cola.push_front(paq);   //Hacemos front por que debe consumir un poco menos de tiempo que back //igual esta clase debe tener punteros
 }
+
+/* \brief Agrega todos los paquetes, contenidos en un array, a la cola.
+ * \param paq_q: puntero al primer elemento del array de paquetes.
+ * \param sizeArray: cantidad de elementos del array de paquetes.
+ */
+void Cola::agregarArrayPaquetes(paquete * paq_p, int sizeArray)
+{
+    for (int i = 0; i < sizeArray && paq_p != NULL; ++i) {
+        cola.push_front(*paq_p);
+        paq_p++;
+    }
+}
+
 
 /* \brief   Esta funcion devuelve el paquete correspondiente a la posicion indicePaquete. No elimina el paquete.
  * \param   indicePaqute: es un entero que indica la posicion del elemento (paquete) que se quiere obtener.
@@ -145,4 +163,24 @@ void Cola::popFront()
 void Cola::popBack()
 {
     cola.pop_back();
+}
+
+/* \brief Retorna la cantidad de elementos de la lista*/
+int Cola::sizeCola()
+{
+    return cola.size();
+}
+
+/* \brief Setea la variable bandWidth (Ancho de banda)
+ * \param bandW: entero que se quiere setear
+ */
+void Cola::setBandWidth(int bandW)
+{
+    bandWidth = bandW;
+}
+
+/* \brief retorna la variable bandWidth (Ancho de banda)*/
+int Cola::getBandWidth()
+{
+    return bandWidth;
 }

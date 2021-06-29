@@ -5,6 +5,8 @@
 #ifndef ALGORITMOSTPFINAL_ROUTER_H
 #define ALGORITMOSTPFINAL_ROUTER_H
 
+#include "Cola.h"
+
 using namespace std;
 
 
@@ -13,7 +15,8 @@ private:
     int idRouter;   //Num del router, es parte de la ip
     int idTerminal; //Num de la terminarl, es parte de la ip. Si no tiene es -1
     int cantEnlaces;//Cantidad de enlaces con otros routers y terminales
-    //Cola * colas[cantEnlaces];    //Una cola por cada enlace
+    Cola * colas_p; //Puntero a la primera cola del Array. El Array de colas
+                    //se crea en el constructor. Hay una cola por cada enlace
     //tablaForwarding tabla;
 
 public:

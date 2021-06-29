@@ -4,20 +4,26 @@
 
 #include "global.h"
 #include "Router.h"
+#include "Cola.h"
 
 using namespace std;
 
-
+/* \brief Constructor de la clase Router.
+ */
 Router::Router(int _idRouter, int _cantEnlaces, int _idTerminal)
 {
     idRouter    = _idRouter;
     idTerminal  = _idTerminal;
     cantEnlaces = _cantEnlaces;
-    //Inicializar colas
+
+    //Crear colas
+    Cola colas[5];
+    colas_p = &colas[0];
 }
 
 /* \brief   Esta funcion recibe una pagina entera de la terminal asociada al router y se encarga
- *          de dividirla en paquetes para luego colocarlos en la cola correspondiente
+ *          de dividirla en paquetes para luego colocarlos en la cola correspondiente.
+ * \param   Pagina: la página que se desea dividir y colocar en la cola.
  */
 void Router::transmitir( pag Pagina)
 {
@@ -49,8 +55,6 @@ void Router::transmitir( pag Pagina)
     /*for (int i = 0; i < cantidadPaquetes; ++i) {
         cola.addPaquete(arrayPaquetes[i]);
     }*/
-
-
 
 }
 

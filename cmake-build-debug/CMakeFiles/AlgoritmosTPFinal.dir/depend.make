@@ -5,6 +5,7 @@ CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o: ../Cola.cpp
 CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o: ../Cola.h
 CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o: ../global.h
 
+CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o: ../Cola.h
 CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o: ../Router.cpp
 CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o: ../Router.h
 CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o: ../global.h

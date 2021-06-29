@@ -8,13 +8,20 @@
 using namespace std;
 
 
-
+/* \brief Constructor de la clase Terminal.
+ */
 Terminal::Terminal(int _idTerminal, int _idRouter)
 {
     ip.idTerminal = _idTerminal;
     ip.idRouter   = _idRouter;
 }
 
+/* \brief Crea una pagina a enviar. El destinatario y el tamaño de la
+ *        pagina se designan aleatoriamente.
+ *        El id de cada pagina es unico e incrementa: comienza en 0 y
+ *        aumenta en 1 cada vez que se crea una página. No importa desde
+ *        que terminal se cree.
+ */
 pag Terminal::crearPagina()
 {
     struct pag Pagina;
