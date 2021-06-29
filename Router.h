@@ -5,6 +5,9 @@
 #ifndef ALGORITMOSTPFINAL_ROUTER_H
 #define ALGORITMOSTPFINAL_ROUTER_H
 
+using namespace std;
+
+
 class Router {
 private:
     int idRouter;   //Num del router, es parte de la ip

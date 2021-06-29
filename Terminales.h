@@ -5,6 +5,8 @@
 #ifndef ALGORITMOSTPFINAL_TERMINALES_H
 #define ALGORITMOSTPFINAL_TERMINALES_H
 
+using namespace std;
+
 
 //Objeto que representa una pc conectada a un unico router
 class Terminal {
@@ -15,6 +17,8 @@ public:
     Terminal(int _idTerminal, int _idRouter);
     pag crearPagina();
 };
+
+extern int idPagina_global;
 
 
 

@@ -5,6 +5,11 @@
 #ifndef ALGORITMOSTPFINAL_GLOBAL_H
 #define ALGORITMOSTPFINAL_GLOBAL_H
 
+#include <list>
+
+using namespace std;
+
+
 //Variables globales
 extern int cantidadRouters;
 extern int cantidadTerminales;
@@ -15,6 +20,7 @@ struct ip {
 };
 
 struct pag {
+    int idPagina;
     int sizePag;
     struct ip ip_destino;
 };
@@ -27,6 +33,7 @@ struct paquete {
     struct ip ip_destino;   //IP de destino
     struct ip ip_origen;    //IP de origen
     int numPaquete;         //Identificador del paquete. Va del 0 a sizePag-1
+    int idPagina;           //Identificador de la pagina.
     int sizePag;            //Cantidad de paquetes que forman la página
 };
 

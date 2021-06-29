@@ -6,12 +6,14 @@
 #include "global.h"
 #include "Router.h"
 #include "Terminales.h"
+#include "Cola.h"
 
 using namespace std;
 
 //Definicion de variables globales
 int cantidadRouters;
 int cantidadTerminales;
+int idPagina_global= 0;
 
 int main() {
     /* ------Como leer un archivo------

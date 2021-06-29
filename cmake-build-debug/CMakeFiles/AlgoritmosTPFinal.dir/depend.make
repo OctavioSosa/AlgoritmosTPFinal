@@ -13,6 +13,7 @@ CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o: ../Terminales.cpp
 CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o: ../Terminales.h
 CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o: ../global.h
 
+CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.o: ../Cola.h
 CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.o: ../Router.h
 CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.o: ../Terminales.h
 CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.o: ../global.h

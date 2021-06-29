@@ -5,6 +5,9 @@
 #include "global.h"
 #include "Router.h"
 
+using namespace std;
+
+
 Router::Router(int _idRouter, int _cantEnlaces, int _idTerminal)
 {
     idRouter    = _idRouter;
@@ -38,6 +41,7 @@ void Router::transmitir( pag Pagina)
         arrayPaquetes[i].ip_destino = Pagina.ip_destino;
         arrayPaquetes[i].ip_origen  = ip_origen;
         arrayPaquetes[i].numPaquete = i;
+        arrayPaquetes[i].idPagina   = Pagina.idPagina;
     }
 
     //-----Coloca los paquetes en la cola correspondiente------
