@@ -24,5 +24,4 @@ pag Terminal::crearPagina()
     while (Pagina.ip_destino.idRouter != ip.idRouter && Pagina.ip_destino.idTerminal != ip.idTerminal);    //Para que no se envie un archivo a si mismo
 
     return Pagina;
-
 }
