@@ -82,6 +82,27 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/Cola.cpp">
+			<Option target="AlgoritmosTPFinal"/>
+		</Unit>
+		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h">
+			<Option target="AlgoritmosTPFinal"/>
+		</Unit>
+		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/Router.cpp">
+			<Option target="AlgoritmosTPFinal"/>
+		</Unit>
+		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/Router.h">
+			<Option target="AlgoritmosTPFinal"/>
+		</Unit>
+		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.cpp">
+			<Option target="AlgoritmosTPFinal"/>
+		</Unit>
+		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.h">
+			<Option target="AlgoritmosTPFinal"/>
+		</Unit>
+		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/global.h">
+			<Option target="AlgoritmosTPFinal"/>
+		</Unit>
 		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/main.cpp">
 			<Option target="AlgoritmosTPFinal"/>
 		</Unit>

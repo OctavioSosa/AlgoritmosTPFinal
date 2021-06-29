@@ -6,7 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/octa/Algoritmos/AlgoritmosTPFinal/main.cpp
-iostream
+/home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.cpp
+global.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/global.h
+cstdlib
 -
+Terminales.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.h
+
+/home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.h
+
+/home/octa/Algoritmos/AlgoritmosTPFinal/global.h
 

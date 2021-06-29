@@ -143,6 +143,87 @@ AlgoritmosTPFinal/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/build
 .PHONY : AlgoritmosTPFinal/fast
 
+Cola.o: Cola.cpp.o
+
+.PHONY : Cola.o
+
+# target to build an object file
+Cola.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o
+.PHONY : Cola.cpp.o
+
+Cola.i: Cola.cpp.i
+
+.PHONY : Cola.i
+
+# target to preprocess a source file
+Cola.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.i
+.PHONY : Cola.cpp.i
+
+Cola.s: Cola.cpp.s
+
+.PHONY : Cola.s
+
+# target to generate assembly for a file
+Cola.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.s
+.PHONY : Cola.cpp.s
+
+Router.o: Router.cpp.o
+
+.PHONY : Router.o
+
+# target to build an object file
+Router.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o
+.PHONY : Router.cpp.o
+
+Router.i: Router.cpp.i
+
+.PHONY : Router.i
+
+# target to preprocess a source file
+Router.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.i
+.PHONY : Router.cpp.i
+
+Router.s: Router.cpp.s
+
+.PHONY : Router.s
+
+# target to generate assembly for a file
+Router.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.s
+.PHONY : Router.cpp.s
+
+Terminales.o: Terminales.cpp.o
+
+.PHONY : Terminales.o
+
+# target to build an object file
+Terminales.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o
+.PHONY : Terminales.cpp.o
+
+Terminales.i: Terminales.cpp.i
+
+.PHONY : Terminales.i
+
+# target to preprocess a source file
+Terminales.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.i
+.PHONY : Terminales.cpp.i
+
+Terminales.s: Terminales.cpp.s
+
+.PHONY : Terminales.s
+
+# target to generate assembly for a file
+Terminales.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.s
+.PHONY : Terminales.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -179,6 +260,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AlgoritmosTPFinal"
+	@echo "... Cola.o"
+	@echo "... Cola.i"
+	@echo "... Cola.s"
+	@echo "... Router.o"
+	@echo "... Router.i"
+	@echo "... Router.s"
+	@echo "... Terminales.o"
+	@echo "... Terminales.i"
+	@echo "... Terminales.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

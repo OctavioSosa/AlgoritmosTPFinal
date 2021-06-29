@@ -90,17 +90,62 @@ CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/octa/Algoritmos/AlgoritmosTPFinal/main.cpp -o CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.s
 
+CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o: CMakeFiles/AlgoritmosTPFinal.dir/flags.make
+CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o: ../Router.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o -c /home/octa/Algoritmos/AlgoritmosTPFinal/Router.cpp
+
+CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/octa/Algoritmos/AlgoritmosTPFinal/Router.cpp > CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.i
+
+CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/octa/Algoritmos/AlgoritmosTPFinal/Router.cpp -o CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.s
+
+CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o: CMakeFiles/AlgoritmosTPFinal.dir/flags.make
+CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o: ../Terminales.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o -c /home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.cpp
+
+CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.cpp > CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.i
+
+CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.cpp -o CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.s
+
+CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o: CMakeFiles/AlgoritmosTPFinal.dir/flags.make
+CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o: ../Cola.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o -c /home/octa/Algoritmos/AlgoritmosTPFinal/Cola.cpp
+
+CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/octa/Algoritmos/AlgoritmosTPFinal/Cola.cpp > CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.i
+
+CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/octa/Algoritmos/AlgoritmosTPFinal/Cola.cpp -o CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.s
+
 # Object files for target AlgoritmosTPFinal
 AlgoritmosTPFinal_OBJECTS = \
-"CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.o"
+"CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.o" \
+"CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o" \
+"CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o" \
+"CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o"
 
 # External object files for target AlgoritmosTPFinal
 AlgoritmosTPFinal_EXTERNAL_OBJECTS =
 
 AlgoritmosTPFinal: CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.o
+AlgoritmosTPFinal: CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o
+AlgoritmosTPFinal: CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o
+AlgoritmosTPFinal: CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o
 AlgoritmosTPFinal: CMakeFiles/AlgoritmosTPFinal.dir/build.make
 AlgoritmosTPFinal: CMakeFiles/AlgoritmosTPFinal.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable AlgoritmosTPFinal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable AlgoritmosTPFinal"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AlgoritmosTPFinal.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

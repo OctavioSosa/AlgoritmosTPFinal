@@ -3,4 +3,4 @@ project(AlgoritmosTPFinal)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(AlgoritmosTPFinal main.cpp)
+add_executable(AlgoritmosTPFinal main.cpp global.h Router.h Router.cpp Terminales.h Terminales.cpp Cola.h Cola.cpp)
