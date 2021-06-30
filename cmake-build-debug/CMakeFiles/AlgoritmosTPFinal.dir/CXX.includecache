@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/home/octa/Algoritmos/AlgoritmosTPFinal/Cola.cpp
+list
+-
+Cola.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
+global.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/global.h
+stdio.h
+-
+cstdlib
+-
+
 /home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
 global.h
 /home/octa/Algoritmos/AlgoritmosTPFinal/global.h
@@ -14,17 +26,15 @@ list
 iostream
 -
 
-/home/octa/Algoritmos/AlgoritmosTPFinal/Router.cpp
-global.h
-/home/octa/Algoritmos/AlgoritmosTPFinal/global.h
-Router.h
-/home/octa/Algoritmos/AlgoritmosTPFinal/Router.h
-Cola.h
-/home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Files.cpp
+Files.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Files.h
+fstream
+-
+bits/stdc++.h
+-
 
-/home/octa/Algoritmos/AlgoritmosTPFinal/Router.h
-Cola.h
-/home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Files.h
 
 /home/octa/Algoritmos/AlgoritmosTPFinal/global.h
 list

@@ -17,8 +17,8 @@ Router::Router(int _idRouter, int _cantEnlaces, int _idTerminal)
     cantEnlaces = _cantEnlaces;
 
     //Crear colas
-    Cola colas[5];
-    colas_p = &colas[0];
+//    Cola colas[5];
+//    colas_p = &colas[0];
 }
 
 /* \brief   Esta funcion recibe una pagina entera de la terminal asociada al router y se encarga

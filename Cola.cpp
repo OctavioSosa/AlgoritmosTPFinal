@@ -31,7 +31,7 @@ void Cola::print(){
 
     it = cola.begin();    //retorna un puntero al primer elemento
 
-    for ( it; it != cola.end(); it++){
+    for ( ; it != cola.end(); it++){
         printf("  %d.%d  \t  %d.%d  \t  %d  \t  %d  \t  %d  \n", it->ip_destino.idRouter, it->ip_destino.idTerminal, it->ip_origen.idRouter, it->ip_origen.idTerminal, it->numPaquete, it->idPagina, it->sizePag );
     }
 

@@ -143,6 +143,33 @@ AlgoritmosTPFinal/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/build
 .PHONY : AlgoritmosTPFinal/fast
 
+Algoritmos.o: Algoritmos.cpp.o
+
+.PHONY : Algoritmos.o
+
+# target to build an object file
+Algoritmos.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Algoritmos.cpp.o
+.PHONY : Algoritmos.cpp.o
+
+Algoritmos.i: Algoritmos.cpp.i
+
+.PHONY : Algoritmos.i
+
+# target to preprocess a source file
+Algoritmos.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Algoritmos.cpp.i
+.PHONY : Algoritmos.cpp.i
+
+Algoritmos.s: Algoritmos.cpp.s
+
+.PHONY : Algoritmos.s
+
+# target to generate assembly for a file
+Algoritmos.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Algoritmos.cpp.s
+.PHONY : Algoritmos.cpp.s
+
 Cola.o: Cola.cpp.o
 
 .PHONY : Cola.o
@@ -169,6 +196,33 @@ Cola.s: Cola.cpp.s
 Cola.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.s
 .PHONY : Cola.cpp.s
+
+Files.o: Files.cpp.o
+
+.PHONY : Files.o
+
+# target to build an object file
+Files.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Files.cpp.o
+.PHONY : Files.cpp.o
+
+Files.i: Files.cpp.i
+
+.PHONY : Files.i
+
+# target to preprocess a source file
+Files.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Files.cpp.i
+.PHONY : Files.cpp.i
+
+Files.s: Files.cpp.s
+
+.PHONY : Files.s
+
+# target to generate assembly for a file
+Files.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Files.cpp.s
+.PHONY : Files.cpp.s
 
 Router.o: Router.cpp.o
 
@@ -260,9 +314,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AlgoritmosTPFinal"
+	@echo "... Algoritmos.o"
+	@echo "... Algoritmos.i"
+	@echo "... Algoritmos.s"
 	@echo "... Cola.o"
 	@echo "... Cola.i"
 	@echo "... Cola.s"
+	@echo "... Files.o"
+	@echo "... Files.i"
+	@echo "... Files.s"
 	@echo "... Router.o"
 	@echo "... Router.i"
 	@echo "... Router.s"

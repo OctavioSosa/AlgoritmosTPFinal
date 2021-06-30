@@ -7,6 +7,8 @@
 #include "Router.h"
 #include "Terminales.h"
 #include "Cola.h"
+#include "Algoritmos.h"
+#include "Files.h"
 
 using namespace std;
 
@@ -26,6 +28,5 @@ int main() {
     cantidadRouters = 5;
   //  Router r1 = Router(0,1,0);
    // Terminal t1 = Terminal(0, 0);
-
     return 0;
 }
