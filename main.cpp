@@ -14,6 +14,7 @@ using namespace std;
 
 #define ARCHIVO_GRAFO       "../grafo1"
 #define ARCHIVO_TERMINALES  "../Terminales1"
+#define CANTIDAD_CICLOS     10
 
 //Definicion de variables globales
 int cantidadRouters;
@@ -36,11 +37,15 @@ int main() {
     cantidadTerminales = getNuberLines(ARCHIVO_TERMINALES);
     int terminalesEnlace[cantidadTerminales];
     getTerminalesFromFile( ARCHIVO_TERMINALES, &terminalesEnlace[0]);
+    //Creo las terminales
+    Terminal terminalesArray[cantidadTerminales];
 
 
-    //-------Inicializo los Routers-------//
+
+    //-------Inicializo los Routers y las Terminales-------//
     int cantidadEnlaces = 0;
     int idTerminal = 0;
+    int indice = 0;
     Router routersArray[cantidadRouters];
     for (int i = 0; i < cantidadRouters; ++i) {
         //Obtengo el id de la terminal asociada al router, si es que tiene
@@ -59,8 +64,38 @@ int main() {
 
         //Inicializo los routers
         routersArray[i].setAll( i, idTerminal, cantidadEnlaces, &enlaces[0], &bandWidth[0]);
+
+        //Inicializo las Terminales
+        if (idTerminal != -1){  //Si el router tiene asociada una terminal, la crea
+            terminalesArray[indice].setAll( idTerminal, i);
+            indice++;
+        }
     }
 
+
+    //-------Ciclos-------//
+    int contadorCiclos = 0;
+    while (contadorCiclos < CANTIDAD_CICLOS)
+    {
+        //-------Creacion de Paginas-------
+        for (int i = 0; i < cantidadTerminales ; ++i) {
+            int random = rand() % 5;
+            if (random == 5) {      //Aproximadamente uno de cada 5 ciclos cada terminal crea una pagina
+                int idRouter = terminalesArray[i].getIdRouter();
+                routersArray[idRouter].recibirPagina( terminalesArray[i].crearPagina() );
+            }
+        }
+
+
+        //-------Ordenamiento de Colas-------
+        for (int i = 0; i < cantidadRouters; ++i) {
+            routersArray[i].ordenarColas();
+        }
+
+
+
+
+    }
 
 
     return 0;

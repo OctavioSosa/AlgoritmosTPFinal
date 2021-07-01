@@ -28,6 +28,9 @@ public:
     Router(int _idRouter, int _idTerminal, int _cantEnlaces, int * matrizEnlaces, int * matrizBandWidth);
     void setAll(int _idRouter, int _idTerminal, int _cantEnlaces, int * matrizEnlaces, int * matrizBandWidth);
     void transmitir( pag Pagina);
+    void recibirPagina (pag Pagina);
+    //void recibirPaquetes (paquete * paquetes);
+    void ordenarColas();
 };
 
 

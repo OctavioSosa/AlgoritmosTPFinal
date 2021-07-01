@@ -96,6 +96,50 @@ void Router::transmitir( pag Pagina)
 }
 
 
+void Router::recibirPagina (pag Pagina)
+{
+    //Comprueba que no se quiera llamar a este metodo desde un router que no tenga terminal asociada
+    if(idTerminal == -1){
+        return;
+    }
+
+    //-----Definicion variables-----
+    int cantidadPaquetes;
+    cantidadPaquetes = Pagina.sizePag;
+    struct ip ip_origen;
+    ip_origen.idRouter = idRouter;
+    ip_origen.idTerminal = idTerminal;
+
+
+    //-----Divide la pagina en paquetes-----
+    //Crea los paquetes y los inicializa
+    struct paquete arrayPaquetes[cantidadPaquetes];
+    for (int i = 0; i < cantidadPaquetes; ++i) {
+        arrayPaquetes[i].sizePag    = cantidadPaquetes;
+        arrayPaquetes[i].ip_destino = Pagina.ip_destino;
+        arrayPaquetes[i].ip_origen  = ip_origen;
+        arrayPaquetes[i].numPaquete = i;
+        arrayPaquetes[i].idPagina   = Pagina.idPagina;
+    }
+
+    //-----Coloco los paquetes en la cola propia-----
+    colas_p[cantEnlaces].agregarArrayPaquetes( &arrayPaquetes[0], cantidadPaquetes);
+
+}
+
+/* \brief   Reordena los paquetes de todas las colas (incluida la cola propia),
+ *          segun la regla de dijkstra.
+ * */
+void Router::ordenarColas()
+{
+    //TODO: hacer
+}
+
+
+
+//----------Otras Funciones----------//
+
+
 /* \brief   Devuelve la cantidad de enlaces que tiene el router especificado. Esto lo hace
  *          analizando la matriz correspondiente al grafo.
  * \param   idRout: id del router del cual se quieren obtener los enlaces.
@@ -133,7 +177,11 @@ void getEnlaces(int * matrizEnlaces, int sizeMatrizEnlaces, int idRout, int * ma
             indice++;
         }
     }
-    matrizEnlaces = &enlaces[0];
+
+    //Copio la informacion a la matriz de salida
+    for (int i = 0; i < cantEnlaces; ++i) {
+        matrizEnlaces[i] = enlaces[i];
+    }
     return;
 }
 
@@ -157,7 +205,11 @@ void getBandWidthEnlaces(int * matrizBandWidth, int sizeMatrizBandWidth, int idR
             indice++;
         }
     }
-    matrizBandWidth = &bandWidth[0];
+
+    //Copio la informacion a la matriz de salida
+    for (int i = 0; i < cantEnlaces ; ++i) {
+        matrizBandWidth[i] = bandWidth[i];
+    }
     return;
 }
 

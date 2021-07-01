@@ -32,8 +32,8 @@ void getMatrizFromFile(string nombreArchivo, int * matriz, int * cantAristas)
     fileHandle.open( nombreArchivo, ios::in);    //Abrimos el archivo
 
     i = 0;
-    while( buff != EOF){
-        fileHandle>>buff;   //Lee el primer char del archivo
+    fileHandle>>buff;   //Lee el primer char del archivo
+    while( !fileHandle.eof()){
         if (buff == '\n'){          //Si llego al fin de linea, no hago nada
             //cantidadRouters++;        //La cantidad de routers es igual a la cantidad de lineas del archivo.
                                         // En la ultima linea no hay un '\n', asi que a esto es la cantidad de Routers - 1
@@ -47,6 +47,7 @@ void getMatrizFromFile(string nombreArchivo, int * matriz, int * cantAristas)
         }
 
         i++;
+        fileHandle>>buff;       //Va leyendo los caracteres sucesivos
     }
 
     cantidadAristas /= 2;   //Ahora si obtengo la cantidad de aristas
@@ -92,8 +93,8 @@ void getTerminalesFromFile(string nombreArchivo, int * matriz)
     fileHandle.open( nombreArchivo, ios::in);    //Abrimos el archivo
 
     i = 0;
-    while( buff != EOF){
-        fileHandle>>buff;   //Lee el primer char del archivo
+    fileHandle>>buff;   //Lee el primer char del archivo
+    while( !fileHandle.eof()){
         if (buff == '\n'){          //Si llego al fin de linea, no hago nada
 
         } else {                    //Sino pone infinito en la matriz
@@ -101,6 +102,7 @@ void getTerminalesFromFile(string nombreArchivo, int * matriz)
         }
 
         i++;
+        fileHandle>>buff;   //Lee los caracteres sucesivos
     }
 
     fileHandle.close();

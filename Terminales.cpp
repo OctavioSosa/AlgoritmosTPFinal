@@ -16,6 +16,14 @@ Terminal::Terminal(int _idTerminal, int _idRouter)
     ip.idRouter   = _idRouter;
 }
 
+/* \brief Hace lo mismo que el contructor. Se utiliza cuando se contruyo con el constructor vacio.*/
+void Terminal::setAll(int _idTerminal, int _idRouter)
+{
+    ip.idTerminal = _idTerminal;
+    ip.idRouter   = _idRouter;
+}
+
+
 /* \brief Crea una pagina a enviar. El destinatario y el tamaño de la
  *        pagina se designan aleatoriamente.
  *        El id de cada pagina es unico e incrementa: comienza en 0 y
@@ -36,4 +44,10 @@ pag Terminal::crearPagina()
     idPagina_global++;          //Aumento el identificador para que la proxima pagina tenga uno distinto
 
     return Pagina;
+}
+
+/* \brief   Devuelve el id del router asociado a esta terminal*/
+int Terminal::getIdRouter()
+{
+    return ip.idRouter;
 }

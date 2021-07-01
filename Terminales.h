@@ -14,7 +14,10 @@ private:
     struct ip ip;         //direccion IP
 
 public:
+    Terminal(){};
     Terminal(int _idTerminal, int _idRouter);
+    void setAll(int _idTerminal, int _idRouter);
+    int getIdRouter();
     pag crearPagina();
 };
 
