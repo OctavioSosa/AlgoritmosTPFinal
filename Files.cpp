@@ -20,7 +20,7 @@ using namespace std;
  * \param[out]  *cantAristas: puntero a un entero donde se devolverá la cantidad de aristas que tiene el grafo
  *              correspondiente a la matriz
  * */
-void cargarMatrizFromFile(char * nombreArchivo, int * matriz, int * cantAristas)
+void getMatrizFromFile(string nombreArchivo, int * matriz, int * cantAristas)
 {
     char buff;
     int cantidadAristas = 0;
@@ -62,7 +62,7 @@ void cargarMatrizFromFile(char * nombreArchivo, int * matriz, int * cantAristas)
  * \param[in]   nombreArchivo: Nombre o path del archivo que se quiere abrir.
  * \return      int: Retorna la cantidad de lineas del archivo
  * */
-int getNuberLines(char * nombreArchivo)
+int getNuberLines(string nombreArchivo)
 {
     int i = 0;
     string a;
@@ -73,4 +73,35 @@ int getNuberLines(char * nombreArchivo)
     }
 
     return i;
+}
+
+
+
+/* \brief   Esta funcion copia los numeros columna del archivo "nombreArchivo" y los coloca en
+ *          un array de enteros llamado "matriz".
+ * \param[in]   nombreArchivo: Nombre o path del archivo que se quiere abrir.
+ * \param[out]  *matriz: puntero a un array de enteros donde se cargaran los datos del archivo.
+ * */
+void getTerminalesFromFile(string nombreArchivo, int * matriz)
+{
+    char buff;
+    int i;
+    ifstream fileHandle;
+
+
+    fileHandle.open( nombreArchivo, ios::in);    //Abrimos el archivo
+
+    i = 0;
+    while( buff != EOF){
+        fileHandle>>buff;   //Lee el primer char del archivo
+        if (buff == '\n'){          //Si llego al fin de linea, no hago nada
+
+        } else {                    //Sino pone infinito en la matriz
+            matriz[i] = buff - 48;
+        }
+
+        i++;
+    }
+
+    fileHandle.close();
 }

@@ -13,13 +13,25 @@ using namespace std;
 /* \brief Constructor inicializa las variables privadas de la clase cola.
  *        El ancho de banda se designa aleatoriamente.
  */
-Cola::Cola( int _routerOrigen, int _routerDestino )
+Cola::Cola( int _routerOrigen, int _routerDestino, int _bandWidth )
 {
     routerOrigen  = _routerOrigen;
     routerDestino = _routerDestino;
-    bandWidth     = (rand()%5)+1;   //Va del 1 al 5 //Es la cantidad de paquetes que pueden pasar por ese enlace en un ciclo
-    //list<struct paq> cola;
+    bandWidth     = _bandWidth;         //Es la cantidad de paquetes que pueden pasar por ese enlace en un ciclo//aleatorio:(rand()%5)+1;
+    //list<struct paq> cola;            //Ya esta creada en los atributos privados
 }
+
+
+/* \brief Hace lo mismo que el contructor. Se utiliza cuando se contruyo con el constructor vacio.
+ */
+void Cola::setAll( int _routerOrigen, int _routerDestino, int _bandWidth )
+{
+    routerOrigen  = _routerOrigen;
+    routerDestino = _routerDestino;
+    bandWidth     = _bandWidth;         //Es la cantidad de paquetes que pueden pasar por ese enlace en un ciclo//aleatorio:(rand()%5)+1;
+    //list<struct paq> cola;            //Ya esta creada en los atributos privados
+}
+
 
 /* \brief Imprime todos los paquetes de la cola
  */
@@ -183,4 +195,19 @@ void Cola::setBandWidth(int bandW)
 int Cola::getBandWidth()
 {
     return bandWidth;
+}
+
+
+/* \brief retorna la variable routerDestino*/
+int Cola::getRouterDestino()
+{
+   return routerDestino;
+}
+
+
+/* \brief retorna la variable routerOrigen
+ * */
+int Cola::getRouterOrigen()
+{
+    return routerOrigen;
 }

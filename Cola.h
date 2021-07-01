@@ -19,7 +19,9 @@ private:
     list<struct paquete> cola;
 
 public:
-    Cola( int _routerOrigen, int _routerDestino);
+    Cola( int _routerOrigen, int _routerDestino, int _bandWidth);
+    Cola(){};
+    void setAll( int _routerOrigen, int _routerDestino, int _bandWidth );
     void print();
     void agregarPaquete(paquete paq);
     void agregarArrayPaquetes(paquete * paq_p, int sizeArray);
@@ -32,6 +34,8 @@ public:
     void setBandWidth(int bandW);
     int  getBandWidth();
     int sizeCola();
+    int getRouterDestino();
+    int getRouterOrigen();
 
     ///TODO: Ver estas funciones
     //void Ordenar();

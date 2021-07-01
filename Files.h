@@ -4,8 +4,13 @@
 
 #ifndef ALGORITMOSTPFINAL_FILES_H
 #define ALGORITMOSTPFINAL_FILES_H
+#include <fstream>
 
-int getNuberLines(char * nombreArchivo);
-void cargarMatrizFromFile(char * nombreArchivo, int * matriz, int * cantAristas);
+using namespace std;
+
+
+int getNuberLines(string nombreArchivo);
+void getMatrizFromFile(string nombreArchivo, int * matriz, int * cantAristas);
+void getTerminalesFromFile(string nombreArchivo, int * matriz);
 
 #endif //ALGORITMOSTPFINAL_FILES_H

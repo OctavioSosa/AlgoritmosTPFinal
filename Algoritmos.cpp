@@ -3,8 +3,8 @@
 //
 
 #include "Algoritmos.h"
-
 #include<bits/stdc++.h>
+
 using namespace std ;
 
 int cantNodos;    //TODO: ver de hacer cost[cantNodos][cantNodos]
