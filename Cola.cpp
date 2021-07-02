@@ -54,7 +54,7 @@ void Cola::print(){
  */
 void Cola::agregarPaquete(struct paquete paq)
 {
-    cola.push_front(paq);   //Hacemos front por que debe consumir un poco menos de tiempo que back //igual esta clase debe tener punteros
+   cola.push_back(paq);   //Hacemos front por que debe consumir un poco menos de tiempo que back //igual esta clase debe tener punteros
 }
 
 /* \brief Agrega todos los paquetes, contenidos en un array, a la cola.
@@ -63,9 +63,18 @@ void Cola::agregarPaquete(struct paquete paq)
  */
 void Cola::agregarArrayPaquetes(paquete * paq_p, int sizeArray)
 {
-    for (int i = 0; i < sizeArray && paq_p != NULL; ++i) {
-        cola.push_front(*paq_p);
-        paq_p++;
+    paquete paq;
+    for (int i = 0; i < sizeArray; ++i) {
+        paq.ip_origen.idRouter   = paq_p[i].ip_origen.idRouter;
+        paq.ip_origen.idTerminal = paq_p[i].ip_origen.idTerminal;
+        paq.ip_destino.idRouter  = paq_p[i].ip_destino.idRouter;
+        paq.ip_destino.idTerminal  = paq_p[i].ip_destino.idTerminal;
+        paq.numPaquete  = paq_p[i].numPaquete;
+        paq.idPagina    = paq_p[i].idPagina;
+        paq.sizePag     = paq_p[i].sizePag;
+        //paq = paq_p[i];
+        cola.push_front(paq);
+        //paq_p++;
     }
 }
 

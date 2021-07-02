@@ -7,6 +7,7 @@
 
 #include "global.h"
 #include "Terminales.h"
+#include "Router.h"
 
 
 using namespace std;
@@ -25,17 +26,18 @@ public:
     Admin(int * grafo, int _cantidadRouters);
     Admin(){};
     ~Admin();
-    void setMatrizPaquetesEnColas();
+    void setMatrizPaquetesEnColas( Router * arrayRouters);
     void setMatrizCaminos();
     void getCaminosRouter(int * arrayCam, int idRouter);
     int getCaminoRouterADestino(int idRouter, int idRouDestino);
-    void setMatrizCostos(int * matrizCost, int * matizGrafo, int * matrizPaqColas);
+    void setMatrizCostos();
     void printMatrices();
 
 };
 
 //Funciones de envios
 void enviarPaginaATerminal(pag * Pagina, Terminal * term);
+void enviarPaquetes(Router * arrayRouts);
 
 
 #endif //ALGORITMOSTPFINAL_ADMIN_H

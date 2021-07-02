@@ -18,16 +18,17 @@ Router::Router(int _idRouter, int _idTerminal, int _cantEnlaces, int * matrizEnl
     cantEnlaces = _cantEnlaces;
 
     //Crear colas
-    Cola colas[cantEnlaces+1];  //Una para cada enlace y una cola propia
-    colas_p = &colas[0];
+    //Cola colas[cantEnlaces+1];  //Una para cada enlace y una cola propia
+    //colas_p = &colas[0];
+    colas_p = (Cola*) calloc(cantEnlaces+1, sizeof(Cola));
 
     //Inicializo todas las colas
     for (int i = 0; i < cantEnlaces; ++i) {
-        colas[i].setAll(idRouter, matrizEnlaces[i], matrizBandWidth[i]);
+        colas_p[i].setAll(idRouter, matrizEnlaces[i], matrizBandWidth[i]);
     }
 
     //Inicializo la cola propia
-    colas[cantEnlaces].setAll(idRouter,idRouter,0);
+    colas_p[cantEnlaces].setAll(idRouter,idRouter,0);
 }
 
 
@@ -40,16 +41,17 @@ void Router::setAll(int _idRouter, int _idTerminal, int _cantEnlaces, int * matr
     cantEnlaces = _cantEnlaces;
 
     //Crear colas
-    Cola colas[cantEnlaces+1];  //Una para cada enlace y una cola propia
-    colas_p = &colas[0];
+    //Cola colas[cantEnlaces+1];  //Una para cada enlace y una cola propia
+    //colas_p = &colas[0];
+    colas_p = (Cola*) calloc(cantEnlaces+1, sizeof(Cola));
 
     //Inicializo todas las colas
     for (int i = 0; i < cantEnlaces; ++i) {
-        colas[i].setAll(idRouter, matrizEnlaces[i], matrizBandWidth[i]);
+        colas_p[i].setAll(idRouter, matrizEnlaces[i], matrizBandWidth[i]);
     }
 
     //Inicializo la cola propia
-    colas[cantEnlaces].setAll(idRouter,idRouter,0);
+    colas_p[cantEnlaces].setAll(idRouter,idRouter,0);
 }
 
 
@@ -123,7 +125,12 @@ void Router::recibirPagina (pag Pagina)
     }
 
     //-----Coloco los paquetes en la cola propia-----
-    colas_p[cantEnlaces].agregarArrayPaquetes( &arrayPaquetes[0], cantidadPaquetes);
+    struct paquete auxPaq;
+    for (int i = 0; i < cantidadPaquetes; ++i) {
+        auxPaq = (paquete) arrayPaquetes[i];
+        colas_p[cantEnlaces].agregarPaquete(auxPaq);
+        //colas_p[cantEnlaces].agregarArrayPaquetes( &arrayPaquetes[0], cantidadPaquetes);
+    }
 
 }
 
@@ -145,7 +152,7 @@ void Router::reordenarColas(int * arrayCami)
         //Calculo la cantidad de paquetes que estan en cada cola
         cantidadPaquetes = colas_p[i].sizeCola();
 
-        if (cantidadPaquetes != 0) {    //solo actuo si la cola tiene paquetes
+        if (cantidadPaquetes > 0) {    //solo actuo si la cola tiene paquetes
 
             //Creo un array de paquetes que los contenga
             paquete arrayPaq[cantidadPaquetes];
@@ -166,12 +173,17 @@ void Router::reordenarColas(int * arrayCami)
     //Reubico los paquetes en las colas correspondientes
     int sizeAuxCola = auxCola.sizeCola();
 
-    for (int i = 0; i < sizeAuxCola; ++i)
+
+    for (int i = 0; i < sizeAuxCola && sizeAuxCola > 0; ++i)
     {
         auxCola.getPaquete(i, &auxPaq);                         //Obtengo el paquete de la cola
         routerDestinoFinal = auxPaq.ip_destino.idRouter;        //Obtengo el destino final del paquete
         routerDestinoSiguiente = arrayCami[routerDestinoFinal]; //Veo a que router tengo que enviar el paquete
-        colas_p[routerDestinoSiguiente].agregarPaquete(auxPaq); //Lo coloco en la cola correspondiente a ese router
+        if( routerDestinoFinal == idRouter){            //Si el destino final del paquete es el propio router
+            colas_p[cantEnlaces+1].agregarPaquete(auxPaq); //Lo coloco en la cola propia
+        } else {        //Sino lo guardo en la cola correspondiente a ese router
+            colas_p[routerDestinoSiguiente].agregarPaquete(auxPaq); //Lo coloco en la cola correspondiente a ese router
+        }
     }
 
     //TODO:Ordeno cada cola para que esten listas para el envio
@@ -239,6 +251,7 @@ int getCantidadDeEnlaces(int idRout, int * matriz){
 }
 
 
+
 /* \brief   Devuelve un array con los IDs de los routers con los cuales se enlaza el router
  *          especificado.
  * \param[out]  matrizEnlaces: Array con los IDs de los router enlazados
@@ -304,7 +317,6 @@ void getBandWidthEnlaces(int * matrizBandWidth, int sizeMatrizBandWidth, int idR
 int getIdTerminal(int idRout, int * arrayTermi)
 {
     int aux;
-    int cantEnlaces = 0;
     for (int i = 0; i < cantidadTerminales; ++i) {
         aux = arrayTermi[i];        //Revisa todos los valores del array de terminales
         if (aux == idRout){         //Si este router tiene terminal
@@ -333,4 +345,44 @@ int Router::getIndiceCola (int rDest)
 int Router::getTerminalId()
 {
     return idTerminal;
+}
+
+
+int Router::getCantidadEnlaces()
+{
+    return cantEnlaces;
+}
+
+int Router::getBandWidthCola(int idCola)
+{
+    return colas_p[idCola].getBandWidth();;
+}
+
+/* \brief   Retorna un array con los primeros sizeArray paquetes de la cola idCola.
+ *          Si el sizeArray es igual al ancho de banda del enlace, entonces devuelve todos
+ *          los paquetes que se tienen que enviar
+ * \param[out]  arrayPaquetes: Es el array de paquetes que se retorna
+ * \param[in]   sizeArray: Es el tamaño del array del parametro anterior
+ * \param[in]   idCola: es el numero de la cola de la cual se quiere obtener los pauqetes
+ */
+void Router::getCola(paquete * arrayPaquetes, int sizeArray, int idCola)
+{
+    colas_p[idCola].getArrayPaquetes( arrayPaquetes, sizeArray);
+}
+
+/* \brief Envia el paquete recibido a la cola idCola
+ * \param[in]   paq: paquete a enviar
+ * \param[in]   idCola: es el numero de la cola a la cual se quiere enviar el pauqete
+ * */
+void Router::enviarPaqueteACola(paquete paq, int idCola)
+{
+    colas_p[idCola].agregarPaquete(paq);
+}
+
+
+/* \brief   Retorna el Tamaño de la cola idCola
+ */
+int Router::getSizeCola( int idCola)
+{
+    return colas_p[idCola].sizeCola();
 }

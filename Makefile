@@ -11,25 +11,25 @@ all: main
 main: main.o Router.o Terminales.o Cola.o Algoritmos.o Files.o Admin.o
 	$(CC) $(CFLAGS) -o main main.o
 
-main.o: main.cpp Router.h Terminales.h Cola.h Algoritmos.h Files.h Admin.h
+main.o: main.cpp global.h Router.h Terminales.h Cola.h Algoritmos.h Files.h Admin.h
 	$(CC) $(CFLAGS) -c main.cpp
 
-Router.o: Router.cpp
+Router.o: Router.cpp global.h Cola.h
 	$(CC) $(CFLAGS) -c Router.cpp
 
-Terminales.o: Terminales.cpp
+Terminales.o: Terminales.cpp global.h
 	$(CC) $(CFLAGS) -c Terminales.cpp
 
-Cola.o: Cola.cpp
+Cola.o: Cola.cpp global.h
 	$(CC) $(CFLAGS) -c Cola.cpp
 
-Algoritmos.o: Algoritmos.cpp
+Algoritmos.o: Algoritmos.cpp global.h
 	$(CC) $(CFLAGS) -c Algoritmos.cpp
 
 Files.o: Files.cpp
 	$(CC) $(CFLAGS) -c Files.cpp
 
-Admin.o: Admin.cpp
+Admin.o: Admin.cpp  Algoritmos.h Terminales.h
 	$(CC) $(CFLAGS) -c Admin.cpp
 
 clean:

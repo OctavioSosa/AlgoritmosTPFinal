@@ -34,6 +34,11 @@ public:
     void reordenarColas(int * arrayCami);
     int armarPaginasRecibidas(pag * Pagina);
     int getTerminalId();
+    int getCantidadEnlaces();
+    int getBandWidthCola(int idCola);
+    void getCola(paquete * arrayPaquetes, int sizeArray, int idCola);
+    void enviarPaqueteACola(paquete paq, int idCola);
+    int getSizeCola( int idCola);
 };
 
 
