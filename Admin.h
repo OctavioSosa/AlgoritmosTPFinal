@@ -24,11 +24,13 @@ private:
 public:
     Admin(int * grafo, int _cantidadRouters);
     Admin(){};
+    ~Admin();
     void setMatrizPaquetesEnColas();
     void setMatrizCaminos();
     void getCaminosRouter(int * arrayCam, int idRouter);
     int getCaminoRouterADestino(int idRouter, int idRouDestino);
     void setMatrizCostos(int * matrizCost, int * matizGrafo, int * matrizPaqColas);
+    void printMatrices();
 
 };
 

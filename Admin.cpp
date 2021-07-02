@@ -17,29 +17,35 @@ Admin::Admin(int * _grafo, int _cantidadRouters)
     //Creo e inicializo la matriz Paquetes en Cola
     /* Esta matriz tiene la cantidad de paquetes que hay en cada cola. Igualmente en la cola propia.
      * Pero donde no hay enlaces y no hay colas, su valor es infinito*/
-    int matrPaqEnCol[cantRouters][cantRouters] = {0};       //Se iniciliza en cero porque todas las colas empiezan sin paquetes
+    //int matrPaqEnCol[cantRouters][cantRouters] = {0};
+    matrizPaquetesEnColas = (int*) calloc(cantRouters*cantRouters, sizeof(int));//Se iniciliza en cero porque todas las colas empiezan sin paquetes
     //Inicializo los valores que son infinitor
     for (int i = 0; i < cantRouters; ++i) {
         for (int j = 0; j < cantRouters; ++j) {
             if(grafo[i*cantRouters + j] == INT_MAX){
-                matrPaqEnCol[i][j] = INT_MAX;
+                matrizPaquetesEnColas[i*cantRouters + j] = INT_MAX;
             }
         }
     }
-    //Asigno la matriz al puntero
-    matrizPaquetesEnColas = &matrPaqEnCol[0][0];
 
 
     //Creo e inicializo la matriz costos
-    int matrCostos[cantRouters][cantRouters];
-    matrizCostos = &matrCostos[0][0];
+    //int matrCostos[cantRouters][cantRouters];
+    matrizCostos = (int*) malloc(cantRouters*cantRouters * sizeof(int));
     setMatrizCostos( matrizCostos, grafo, matrizPaquetesEnColas);
 
     //Creo e inicializo la matriz caminos
-    int matrCaminos[cantRouters][cantRouters];
-    matrizCaminos = &matrCaminos[0][0];
+    //int matrCaminos[cantRouters][cantRouters];
+    matrizCaminos = (int*) malloc(cantRouters*cantRouters * sizeof(int));
     setMatrizCaminos();
 
+}
+
+Admin::~Admin()
+{
+    free(matrizPaquetesEnColas);
+    free(matrizCostos);
+    free(matrizCaminos);
 }
 
 void Admin::setMatrizPaquetesEnColas()
@@ -99,6 +105,57 @@ void Admin::setMatrizCostos(int * matrizCost, int * matizGrafo, int * matrizPaqC
         }
     }
 }
+
+
+void Admin::printMatrices(){
+    cout<<"Matriz Grafo:"<<endl;
+    for (int i = 0; i < cantRouters; ++i) {
+        for (int j = 0; j < cantRouters; ++j) {
+            cout<<grafo[i*cantRouters + j]<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+    cout<<endl;
+
+    cout<<"Matriz Caminos:"<<endl;
+    for (int i = 0; i < cantRouters; ++i) {
+        for (int j = 0; j < cantRouters; ++j) {
+            cout<<matrizCaminos[i * cantRouters + j]<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+    cout<<endl;
+
+    cout<<"Matriz Costos:"<<endl;
+    for (int i = 0; i < cantRouters; ++i) {
+        for (int j = 0; j < cantRouters; ++j) {
+            cout<<matrizCostos[i*cantRouters + j]<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+    cout<<endl;
+
+
+    cout<<"Matriz Paquetes en Colas:"<<endl;
+    for (int i = 0; i < cantRouters; ++i) {
+        for (int j = 0; j < cantRouters; ++j) {
+            cout<<matrizPaquetesEnColas[i*cantRouters + j]<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+    cout<<endl;
+}
+
+
+
+
+
+
+//-------Otras Funciones------//
 
 
 /* \brief   Envia la pagina Pagina a la terminal term

@@ -118,14 +118,24 @@ void getCamino(int * arrayC, int sizeArray, int par[] )
         while( matrizAux[j] != -1 )
         {
             j++;
-            matrizAux[j] = par[matrizAux[j]];
+            matrizAux[j] = par[matrizAux[j-1]];
         }
         //j++;
         //matrizAux[j] = -1;
 
         //Guardo solo el nodo siguinte en la matriz
-        arrayC[i] = matrizAux[j-1];
+        if( j-2 > 0){   //Siempre es j-2, pero si j-2 es menor a cero, entonces es 0
+            arrayC[i] = matrizAux[j-2];
+        } else {
+            arrayC[i] = matrizAux[0];
+        }
     }
+    /*//Imprimimos arrayC para comprobar
+    for (int i = 0; i < cantNodos; ++i) {
+        printf("%d ", arrayC[i]);
+    }
+    printf("\n");
+    printf("\n");*/
 }
 
 

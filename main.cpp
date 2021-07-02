@@ -50,6 +50,8 @@ int main() {
     //Incluso se calcula dijkstra pero con todas las colas vacias
     Admin adminSist( &grafo[0][0], cantidadRouters);
 
+    adminSist.printMatrices();
+
 
 
     //-------Inicializo los Routers y las Terminales-------//
@@ -77,11 +79,18 @@ int main() {
 
         //Inicializo las Terminales
         if (idTerminal != -1){  //Si el router tiene asociada una terminal, la crea
-            terminalesArray[indice].setAll( idTerminal, i);
+            terminalesArray[indice].setAll( idTerminal, i, &terminalesEnlace[0]);
             indice++;
         }
     }
 
+    //-------Creo una pagina en cada terminal para arrancar-------
+    for (int i = 0; i < cantidadTerminales ; ++i) {
+        int idRouter = terminalesArray[i].getIdRouter();
+        pag Pagina;
+        terminalesArray[i].crearPagina( &Pagina);
+        routersArray[idRouter].recibirPagina( Pagina);
+    }
 
 
     //-------Ciclos-------//
@@ -93,7 +102,9 @@ int main() {
             int random = rand() % 5;
             if (random == 4) {      //Aproximadamente en uno de cada 5 ciclos, crea una pagina, cada terminal.
                 int idRouter = terminalesArray[i].getIdRouter();
-                routersArray[idRouter].recibirPagina( terminalesArray[i].crearPagina() );
+                pag Pagina;
+                terminalesArray[i].crearPagina( &Pagina);
+                routersArray[idRouter].recibirPagina( Pagina);
             }
         }
 
@@ -108,7 +119,7 @@ int main() {
         }
 
 
-        //-------Armado de páginas recibidas-------
+        //-------Armado y enviado de páginas recibidas-------
         for (int i = 0; i < cantidadRouters; ++i) {
             int terminalId = routersArray[i].getTerminalId();
             if(terminalId > 0) {                            //Veo si el router tiene terminal asociada
@@ -120,6 +131,8 @@ int main() {
                 } while (retorno > 0);   //Si retorno una pagina hay que llamarla de nuevo por si hay otra
             }
         }
+
+        //-------
 
 
         contadorCiclos++;

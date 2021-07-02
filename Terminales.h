@@ -12,13 +12,14 @@ using namespace std;
 class Terminal {
 private:
     struct ip ip;         //direccion IP
+    int * terminalesEnlace; //Es un array con los id de los routers de cada terminal
 
 public:
     Terminal(){};
-    Terminal(int _idTerminal, int _idRouter);
-    void setAll(int _idTerminal, int _idRouter);
+    Terminal(int _idTerminal, int _idRouter, int * _terminalesEnlace);
+    void setAll(int _idTerminal, int _idRouter, int * _terminalesEnlace);
     int getIdRouter();
-    pag crearPagina();
+    void crearPagina( pag * Pag);
     void recibirPagina(pag Pagina);
 };
 
