@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdint>
+#include<bits/stdc++.h>
 
 #include "global.h"
 #include "Router.h"
@@ -9,6 +10,7 @@
 #include "Cola.h"
 #include "Algoritmos.h"
 #include "Files.h"
+#include "Admin.h"
 
 using namespace std;
 
@@ -39,6 +41,14 @@ int main() {
     getTerminalesFromFile( ARCHIVO_TERMINALES, &terminalesEnlace[0]);
     //Creo las terminales
     Terminal terminalesArray[cantidadTerminales];
+
+
+
+    //-----Creo el Administrador del Sistema-----//
+
+    //Con el constructor se inicilizan las matrices: matrizCaminos, matrizCostos, matrizPaquetesEnColas
+    //Incluso se calcula dijkstra pero con todas las colas vacias
+    Admin adminSist( &grafo[0][0], cantidadRouters);
 
 
 
@@ -73,6 +83,7 @@ int main() {
     }
 
 
+
     //-------Ciclos-------//
     int contadorCiclos = 0;
     while (contadorCiclos < CANTIDAD_CICLOS)
@@ -80,7 +91,7 @@ int main() {
         //-------Creacion de Paginas-------
         for (int i = 0; i < cantidadTerminales ; ++i) {
             int random = rand() % 5;
-            if (random == 5) {      //Aproximadamente uno de cada 5 ciclos cada terminal crea una pagina
+            if (random == 4) {      //Aproximadamente en uno de cada 5 ciclos, crea una pagina, cada terminal.
                 int idRouter = terminalesArray[i].getIdRouter();
                 routersArray[idRouter].recibirPagina( terminalesArray[i].crearPagina() );
             }
@@ -89,12 +100,29 @@ int main() {
 
         //-------Ordenamiento de Colas-------
         for (int i = 0; i < cantidadRouters; ++i) {
-            routersArray[i].ordenarColas();
+            //Obtengo todos los caminos del router[i]
+            int arrayCaminos[cantidadRouters];
+            adminSist.getCaminosRouter( &arrayCaminos[0], i);
+            //reordeno todos los paquetes de las colas
+            routersArray[i].reordenarColas( &arrayCaminos[0]);
         }
 
 
+        //-------Armado de páginas recibidas-------
+        for (int i = 0; i < cantidadRouters; ++i) {
+            int terminalId = routersArray[i].getTerminalId();
+            if(terminalId > 0) {                            //Veo si el router tiene terminal asociada
+                pag Pagina;
+                int retorno;
+                do {
+                    retorno = routersArray[i].armarPaginasRecibidas(&Pagina);   //Obtengo una pagina si hay
+                    enviarPaginaATerminal( &Pagina, &terminalesArray[idTerminal]);        //La envio a la terminal
+                } while (retorno > 0);   //Si retorno una pagina hay que llamarla de nuevo por si hay otra
+            }
+        }
 
 
+        contadorCiclos++;
     }
 
 

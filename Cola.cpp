@@ -149,6 +149,93 @@ int Cola::getPaquete(int indicePaquete, struct paquete * paq_p)
 }
 
 
+/* \brief   Esta funcion devuelve un array con los primeros "sizeArray" paquetes. Si sizeArray es mayor o igual
+ *          a la cantidad de paquetes, devuelve todos los paquetes.
+ * \param   paq_p: Array de paquetes que será devuelto y cargado con los paquetes.
+ * \param   sizeArray: Tamaño del array ingresado en el parametro anterior
+ * */
+void Cola::getArrayPaquetes(paquete * paq_p, int sizeArray)
+{
+    paquete paqAux;
+
+    //Comprueba cual es menor, si el size del Array o el size de la cola
+    int min = cola.size();
+    if (sizeArray < min){
+        min = sizeArray;
+    }
+
+    for (int i = 0; i < min; ++i) {
+        if(getPaquete( i, &paqAux) == -1){} //Obtengo le paquete, si da error no hago nada
+        paq_p[i] = paqAux;                  //pongo el paquete en el array
+    }
+
+    return;
+}
+
+/* \brief   Esta funcion devuelve todos los paquetes de una pagina cuyo destino es el router indicado.
+ *          Solo devuelve los paquetes si están todos los que conforman la página.
+ * \param[out]  arrayPaq: es el array de paquetes que se va a devolver con los paquetes de la página
+ * \param[ir]   routDestino: El el router del cual se quiere ver si tiene una pagina para armar.
+ * \return  Retorna la cantidad de elementos de la pagina, si esta se encontraba completa o 0 en caso de que no haya pagina
+ *
+ * Aclaracion: si hay mas de una pagina entera en la cola, esta funcion lo ignora y devuelve solo un array. Por lo que
+ * se deberia volver a llamar la funcion si retorno un numero mayor a cero
+ * */
+int Cola::getPaquetesPagina( paquete * arrayPaq, int routDestino)
+{
+    int cantidadElementos;
+    list<struct paquete>::iterator it;
+    cantidadElementos = cola.size();
+    it = cola.begin();
+
+    int idPagina;
+    int sizePagina;
+    int indice;
+    for (int i = 0; i < cantidadElementos; ++i) {   //Recorro todos los elementos
+        if (it->ip_destino.idRouter == routDestino){    //Pregunto si el destino del paquete es el del router indicado
+            idPagina   = it->idPagina;
+            sizePagina = it->sizePag;
+            paquete auxPaq[sizePagina]; //Creo un array para contener todos los paquetes de esa pagina
+
+            indice = 0;
+            for (int j = i+1; j < cantidadElementos ; ++j) {  //Recorro los paquetes siguientes a ver si pertenecen a la pagina
+                if (it->idPagina == idPagina){  //Si el paquete pertenece a la pagina
+                    auxPaq[indice] = *it;        //Lo guardo en el array
+                    if (indice == sizePagina){  //Si ya cargo en el array todos los elementos de la pagina
+                        arrayPaq = &auxPaq[0];      //Retorna el array en param
+                        //borro todos los paquetes de la pagina
+                        it = cola.begin();
+                        int k = 0;
+                        int flag = 0;
+                        while (k < sizePagina) {
+                           if (it->idPagina == idPagina) {
+                               it = cola.erase(it); //Borro el paquete
+                               k++;                 //cada vez que borro un paquete aumento k
+                               flag = 1;
+                           }
+                           if (flag == 0) {  //solo hago it++ cuando no borre nada, porque si borre el siguiente elemento queda en la posicion en la que estoy
+                               it++;               //Voy avanzando en la iteracion
+                           }
+                           flag = 0;
+                        }
+
+                        return indice;              //Retorna la cantidad de elementos del array en return
+                    }
+                    indice++;                   //Incremento el indice
+                }
+                it++;                       //Incremento el iterador
+            }
+        }
+        it++;
+    }
+
+    return 0;
+
+    it = cola.erase(it);    //Borra el paquete it, y devuelve el paquete siguiente que se vuelve a guardar en it
+
+    return 0;
+}
+
 /* \brief Devuelve un puntero al primer elemento de la lista
  *        No elimina el elemento
  */
@@ -169,6 +256,14 @@ void Cola::leerBack(struct paquete * paq)
 void Cola::popFront()
 {
     cola.pop_front();
+}
+
+/* \brief Borra todos los paquetes de la cola*/
+void Cola::borrarTodo(){
+    int sizeCola = cola.size();
+    for (int i = 0; i < sizeCola; ++i) {
+        cola.pop_front();
+    }
 }
 
 /* \brief Elimina el ultimo elemento de la lista*/

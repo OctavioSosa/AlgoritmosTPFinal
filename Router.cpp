@@ -128,14 +128,95 @@ void Router::recibirPagina (pag Pagina)
 }
 
 /* \brief   Reordena los paquetes de todas las colas (incluida la cola propia),
- *          segun la regla de dijkstra.
+ *          segun lo que se envie en arrayCami. Este debe cumplir la regla de dijkstra
  * */
-void Router::ordenarColas()
+void Router::reordenarColas(int * arrayCami)
 {
-    //TODO: hacer
+    Cola auxCola( 0, 0, 0);
+    int cantidadPaquetes = 0;
+    paquete auxPaq;
+    int routerDestinoFinal;
+    int routerDestinoSiguiente;
+
+    //----Reubicar de ser necesario lo que esta en todas las colas----
+
+    //Pongo los paquetes de todas las colas en la cola auxiliar
+    for (int i = 0; i < cantEnlaces+1; ++i) {
+        //Calculo la cantidad de paquetes que estan en cada cola
+        cantidadPaquetes = colas_p[i].sizeCola();
+
+        if (cantidadPaquetes != 0) {    //solo actuo si la cola tiene paquetes
+
+            //Creo un array de paquetes que los contenga
+            paquete arrayPaq[cantidadPaquetes];
+
+            //Cargo todos los paquetes al array
+            colas_p[i].getArrayPaquetes(&arrayPaq[0], cantidadPaquetes);
+
+            //Cargo todos los paquetes del array a la cola auxiliar
+            auxCola.getArrayPaquetes(&arrayPaq[0], cantidadPaquetes);
+
+            //Borro todos los paquetes de la cola[i]
+            colas_p[i].borrarTodo();
+        }
+    }
+    //Ahora ya tengo cargados todos los paquetes en una unica cola auxiliar
+
+
+    //Reubico los paquetes en las colas correspondientes
+    int sizeAuxCola = auxCola.sizeCola();
+
+    for (int i = 0; i < sizeAuxCola; ++i)
+    {
+        auxCola.getPaquete(i, &auxPaq);                         //Obtengo el paquete de la cola
+        routerDestinoFinal = auxPaq.ip_destino.idRouter;        //Obtengo el destino final del paquete
+        routerDestinoSiguiente = arrayCami[routerDestinoFinal]; //Veo a que router tengo que enviar el paquete
+        colas_p[routerDestinoSiguiente].agregarPaquete(auxPaq); //Lo coloco en la cola correspondiente a ese router
+    }
+
+    //TODO:Ordeno cada cola para que esten listas para el envio
+    /*for (int i = 0; i < cantEnlaces; ++i) {
+        colas_p[i].ordenarCola();
+    }*/
+    //ordenarColas();
 }
 
 
+
+void Router::ordenarColas()
+{
+    for (int i = 0; i < cantEnlaces; ++i) {     //No ordeno la cola propia, no hace falta
+        //colas_p[i].
+    }
+}
+
+/* \brief   Comprueba si hay una pagina entera en la cola propia. Si es asi la arma y la devuelve por el
+ *          parametro Pagina.
+ * \param[out]  Pagina: retorna la pagina si habia alguna
+ * \retunr  Retorna el tamaño de la pagina(un numero mayor a cero) en caso de que haya habido una pagina
+ *          en la cola ó 0 en caso contrario
+ *
+ *  Aclaracion: si hay mas de una pagina entera en la cola, esta funcion lo ignora y devuelve solo una
+ *  pagina, por lo que se deberia volver a llamar la funcion si retornó un numero mayor a cero
+ * */
+int Router::armarPaginasRecibidas(pag * Pagina)
+{
+    int sizeCola = colas_p[cantEnlaces+1].sizeCola();   //Cola propia
+    paquete arrayPaq[sizeCola];
+
+    int retorno;
+    retorno = colas_p[cantEnlaces+1].getPaquetesPagina( &arrayPaq[0], idRouter);
+
+    if(retorno == 0){
+        return 0;
+    }
+
+    //Armamos la pagina
+    Pagina->idPagina = arrayPaq[0].idPagina;
+    Pagina->sizePag  = arrayPaq[0].sizePag;
+    Pagina->ip_destino = arrayPaq[0].ip_destino;
+    return retorno;
+}
 
 //----------Otras Funciones----------//
 
@@ -156,6 +237,7 @@ int getCantidadDeEnlaces(int idRout, int * matriz){
     }
     return cantEnlaces;
 }
+
 
 /* \brief   Devuelve un array con los IDs de los routers con los cuales se enlaza el router
  *          especificado.
@@ -245,4 +327,10 @@ int Router::getIndiceCola (int rDest)
     }
 
     return -1;  //Si no coincide con inguna retorna -1
+}
+
+/* \brief Retorna el ID de su terminal asociada o -1 en caso de no tener terminal*/
+int Router::getTerminalId()
+{
+    return idTerminal;
 }

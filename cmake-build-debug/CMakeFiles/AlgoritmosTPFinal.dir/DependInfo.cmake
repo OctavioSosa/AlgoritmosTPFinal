@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/octa/Algoritmos/AlgoritmosTPFinal/Admin.cpp" "/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles/AlgoritmosTPFinal.dir/Admin.cpp.o"
   "/home/octa/Algoritmos/AlgoritmosTPFinal/Algoritmos.cpp" "/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles/AlgoritmosTPFinal.dir/Algoritmos.cpp.o"
   "/home/octa/Algoritmos/AlgoritmosTPFinal/Cola.cpp" "/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o"
   "/home/octa/Algoritmos/AlgoritmosTPFinal/Files.cpp" "/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles/AlgoritmosTPFinal.dir/Files.cpp.o"

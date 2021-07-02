@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "AlgoritmosTPFinal"
   "AlgoritmosTPFinal.pdb"
+  "CMakeFiles/AlgoritmosTPFinal.dir/Admin.cpp.o"
   "CMakeFiles/AlgoritmosTPFinal.dir/Algoritmos.cpp.o"
   "CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o"
   "CMakeFiles/AlgoritmosTPFinal.dir/Files.cpp.o"

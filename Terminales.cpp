@@ -51,3 +51,9 @@ int Terminal::getIdRouter()
 {
     return ip.idRouter;
 }
+
+/* \brief Recibe una pagina y la descarta. No hace nada realmente*/
+void Terminal::recibirPagina(pag Pagina)
+{
+
+}

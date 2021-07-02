@@ -6,6 +6,24 @@
 
 #IncludeRegexTransform: 
 
+/home/octa/Algoritmos/AlgoritmosTPFinal/Admin.cpp
+Admin.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Admin.h
+Algoritmos.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Algoritmos.h
+Terminales.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.h
+bits/stdc++.h
+-
+
+/home/octa/Algoritmos/AlgoritmosTPFinal/Admin.h
+global.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/global.h
+Terminales.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.h
+
+/home/octa/Algoritmos/AlgoritmosTPFinal/Algoritmos.h
+
 /home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
 global.h
 /home/octa/Algoritmos/AlgoritmosTPFinal/global.h
@@ -14,21 +32,43 @@ list
 iostream
 -
 
-/home/octa/Algoritmos/AlgoritmosTPFinal/Router.cpp
-global.h
-/home/octa/Algoritmos/AlgoritmosTPFinal/global.h
-Router.h
-/home/octa/Algoritmos/AlgoritmosTPFinal/Router.h
-Cola.h
-/home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
-bits/stdc++.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Files.h
+fstream
 -
 
 /home/octa/Algoritmos/AlgoritmosTPFinal/Router.h
 Cola.h
 /home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
+
+/home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.h
 
 /home/octa/Algoritmos/AlgoritmosTPFinal/global.h
 list
 -
+
+/home/octa/Algoritmos/AlgoritmosTPFinal/main.cpp
+cstdlib
+-
+iostream
+-
+fstream
+-
+cstdint
+-
+bits/stdc++.h
+-
+global.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/global.h
+Router.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Router.h
+Terminales.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.h
+Cola.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
+Algoritmos.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Algoritmos.h
+Files.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Files.h
+Admin.h
+/home/octa/Algoritmos/AlgoritmosTPFinal/Admin.h
 

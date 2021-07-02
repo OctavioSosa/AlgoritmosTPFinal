@@ -19,6 +19,7 @@ public:
     void setAll(int _idTerminal, int _idRouter);
     int getIdRouter();
     pag crearPagina();
+    void recibirPagina(pag Pagina);
 };
 
 extern int idPagina_global;

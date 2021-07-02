@@ -143,6 +143,33 @@ AlgoritmosTPFinal/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/build
 .PHONY : AlgoritmosTPFinal/fast
 
+Admin.o: Admin.cpp.o
+
+.PHONY : Admin.o
+
+# target to build an object file
+Admin.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Admin.cpp.o
+.PHONY : Admin.cpp.o
+
+Admin.i: Admin.cpp.i
+
+.PHONY : Admin.i
+
+# target to preprocess a source file
+Admin.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Admin.cpp.i
+.PHONY : Admin.cpp.i
+
+Admin.s: Admin.cpp.s
+
+.PHONY : Admin.s
+
+# target to generate assembly for a file
+Admin.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Admin.cpp.s
+.PHONY : Admin.cpp.s
+
 Algoritmos.o: Algoritmos.cpp.o
 
 .PHONY : Algoritmos.o
@@ -314,6 +341,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AlgoritmosTPFinal"
+	@echo "... Admin.o"
+	@echo "... Admin.i"
+	@echo "... Admin.s"
 	@echo "... Algoritmos.o"
 	@echo "... Algoritmos.i"
 	@echo "... Algoritmos.s"

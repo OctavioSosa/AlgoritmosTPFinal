@@ -27,9 +27,12 @@ public:
     void agregarArrayPaquetes(paquete * paq_p, int sizeArray);
     int leerPaquete(int indicePaquete, struct paquete * paq_p);
     int getPaquete(int indicePaquete, struct paquete * paq_p);
+    void getArrayPaquetes(paquete * paq_p, int sizeArray);
+    int getPaquetesPagina( paquete * arrayPaq, int routDestino);
     void leerFront(struct paquete * paq);
     void leerBack(struct paquete * paq);
     void popFront();
+    void borrarTodo();
     void popBack();
     void setBandWidth(int bandW);
     int  getBandWidth();

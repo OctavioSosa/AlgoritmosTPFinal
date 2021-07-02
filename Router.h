@@ -31,6 +31,9 @@ public:
     void recibirPagina (pag Pagina);
     //void recibirPaquetes (paquete * paquetes);
     void ordenarColas();
+    void reordenarColas(int * arrayCami);
+    int armarPaginasRecibidas(pag * Pagina);
+    int getTerminalId();
 };
 
 
