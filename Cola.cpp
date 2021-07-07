@@ -54,7 +54,7 @@ void Cola::print(){
  */
 void Cola::agregarPaquete(struct paquete paq)
 {
-   cola.push_back(paq);   //Hacemos front por que debe consumir un poco menos de tiempo que back //igual esta clase debe tener punteros
+   cola.push_front(paq);   //Hacemos front por que debe consumir un poco menos de tiempo que back //igual esta clase debe tener punteros
 }
 
 /* \brief Agrega todos los paquetes, contenidos en un array, a la cola.

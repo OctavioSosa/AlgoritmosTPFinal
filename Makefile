@@ -9,7 +9,7 @@ CFLAGS = -Wall #-g
 all: main
 
 main: main.o Router.o Terminales.o Cola.o Algoritmos.o Files.o Admin.o
-	$(CC) $(CFLAGS) -o main main.o
+	$(CC) $(CFLAGS) -o main main.o Router.o Terminales.o Cola.o Algoritmos.o Files.o Admin.o
 
 main.o: main.cpp global.h Router.h Terminales.h Cola.h Algoritmos.h Files.h Admin.h
 	$(CC) $(CFLAGS) -c main.cpp

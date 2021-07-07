@@ -20,7 +20,8 @@ Router::Router(int _idRouter, int _idTerminal, int _cantEnlaces, int * matrizEnl
     //Crear colas
     //Cola colas[cantEnlaces+1];  //Una para cada enlace y una cola propia
     //colas_p = &colas[0];
-    colas_p = (Cola*) calloc(cantEnlaces+1, sizeof(Cola));
+//    colas_p = (Cola*) calloc(cantEnlaces+1, sizeof(Cola));
+    colas_p = new Cola[cantEnlaces+1]();
 
     //Inicializo todas las colas
     for (int i = 0; i < cantEnlaces; ++i) {
