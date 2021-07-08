@@ -55,12 +55,19 @@ void Admin::setMatrizPaquetesEnColas( Router * arrayRouters)
     int k;
     for(int i = 0; i < cantRouters;i++){
         cantiColas = arrayRouters[i].getCantidadEnlaces() + 1;
-        for (int j = 0; j < cantiColas; ++j) {
-            int enlaces[cantiColas-1];
-            getEnlaces(&enlaces[0], cantiColas-1,  i, grafo); //Obtengo la matriz de enlaces
+
+        //Obtengo la matriz de enlaces
+        int enlaces[cantiColas-1];
+        getEnlaces(&enlaces[0], cantiColas-1,  i, grafo);
+
+        //Coloco la cantidad de paquetes en los lugares correspondientes
+        for (int j = 0; j < cantiColas-1; ++j) {
             k = enlaces[j];                                                             //guardo el router asignado a la cola j
-            matrizPaquetesEnColas[i*cantRouters + k] = arrayRouters[i].getSizeCola(j);   //Asigno la cantidad de paquetes a la matriz paqutes en cola
+            matrizPaquetesEnColas[i*cantRouters + k] = arrayRouters[i].getSizeCola(j);  //Asigno la cantidad de paquetes a la matriz paqutes en cola
         }
+
+        //Paquetes que tengo en la cola propia
+        matrizPaquetesEnColas[i*cantRouters + i] = arrayRouters[i].getSizeCola(cantiColas);  //Asigno la cantidad de paquetes que tengo en la cola propia
 
     }
 }
@@ -183,19 +190,33 @@ void enviarPaquetes(Router * arrayRouts)
     int bandWidth;
     int idRou;
     int cantidColas;
+    int minSize;
     for (int i = 0; i < cantidadRouters; ++i) {     //Recorro toodo el array de routers
-        cantColas = arrayRouts[i].getCantidadEnlaces();
-        for (int j = 0; j < cantColas; ++j) {       //Recorro todas la colas
-            //Obtengo los paquetes a enviar de una cola de un router
-            bandWidth = arrayRouts[i].getBandWidthCola(j);
-            paquete arrayPaquetes[bandWidth];
-            arrayRouts[i].getCola( &arrayPaquetes[0], bandWidth, j);  //pongo todos los paquetes que tiene que enviar la cola j del router i en el array de paquetes
+        cantColas = arrayRouts[i].getCantidadEnlaces()+1;
+        for (int j = 0; j < cantColas-1; ++j) {       //Recorro todas la colas, excepto la cola propia
 
-            //Envio los paquetes al router correspondiente
-            for (int k = 0; k < bandWidth; ++k) {   //Recorro toodo el array de paquetes
-                idRou = arrayPaquetes[k].ip_destino.idRouter;           //pregunta cual es el router
-                cantidColas = arrayRouts[idRou].getCantidadEnlaces() + 1; //sacar cantidad de colas del router
-                arrayRouts[idRou].enviarPaqueteACola( arrayPaquetes[k], cantidColas); //Envio el paquete a la cola propia
+            //Veo si la cola tiene paquetes para enviar
+            minSize = arrayRouts[i].getSizeCola(j);
+            if (minSize > 0) {  //si tiene los envío
+
+                //Obtengo los paquetes a enviar de una cola de un router
+                bandWidth = arrayRouts[i].getBandWidthCola(j);
+                paquete arrayPaquetes[bandWidth];
+                arrayRouts[i].getCola(&arrayPaquetes[0], bandWidth,
+                                      j);  //pongo todos los paquetes que tiene que enviar la cola j del router i en el array de paquetes
+
+                //Verifico si la cola tiene mas paquetes que bandWidth
+                //minSize = arrayRouts[i].getSizeCola(j); ///(Esto ya lo hago arriba)
+                if (minSize > bandWidth) {
+                    minSize = bandWidth;
+                }
+
+                //Envio los paquetes al router correspondiente
+                idRou = arrayPaquetes[0].ip_destino.idRouter;               //pregunta cual es el router destino
+                cantidColas = arrayRouts[idRou].getCantidadEnlaces() + 1;   //saca la cantidad de colas del router
+                for (int k = 0; k < minSize; ++k) {   //Recorro toodo el array de paquetes
+                    arrayRouts[idRou].enviarPaqueteACola(arrayPaquetes[k], cantidColas - 1); //Envio el paquete a la cola propia de ese router
+                }
             }
         }
 

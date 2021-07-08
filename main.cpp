@@ -26,6 +26,33 @@ int idPagina_global= 0;
 int main() {
     int cantidadAristas;
 
+    //------prueba
+/*    Cola j(2,2,4);
+    Cola co[5];
+    Cola * h = new Cola;
+    paquete p;
+    p.numPaquete = 1;
+    p.sizePag = 5;
+    co[0].setAll(0,0,5);
+    co[0].agregarPaquete(p);
+
+    h->setAll(1,1,5);
+    h->agregarPaquete(p);
+    Router r;
+    int enlac[3]= {0,2,4};
+    int bw[3] = {5,2,5};
+    r.setAll(1,1,3, &enlac[0], &bw[0]);
+    r.enviarPaqueteACola(p,0);
+    r.enviarPaqueteACola(p,1);
+    r.enviarPaqueteACola(p,2);
+    r.enviarPaqueteACola(p,3);
+    r.enviarPaqueteACola(p,4);
+    r.enviarPaqueteACola(p,5);
+    r.enviarPaqueteACola(p,6);*/
+
+
+    //------fin prueba
+
     //-----Obtengo toda la iformacion de los archivos: grafo, terminales, cantidadTerminales, cantidadRouter, cantidadAristas-----//
 
     //Obtemgo la cantidad de routers del archivo
@@ -100,11 +127,12 @@ int main() {
         //-------Creacion de Paginas-------
         for (int i = 0; i < cantidadTerminales; ++i) {
             int random = rand() % 5;
-            if (random == 4 ) {      //Aproximadamente en uno de cada 5 ciclos, crea una pagina, cada terminal.
+            if (random == 3 ) {      //Aproximadamente en uno de cada 5 ciclos, crea una pagina, cada terminal.
                 int idRouter = terminalesArray[i].getIdRouter();
                 pag Pagina;
-                terminalesArray[i].crearPagina( &Pagina);
-                routersArray[idRouter].recibirPagina( Pagina);
+                //Crea y envía la página
+                terminalesArray[i].crearPagina( &Pagina);       //La terminal i crea una pagina
+                routersArray[idRouter].recibirPagina( Pagina);  //Esa pagina es enviada desde la terminal hacia el router asociado a la terminal. En el router se divide en paquetes
             }
         }
 
@@ -127,7 +155,9 @@ int main() {
                 int retorno;
                 do {
                     retorno = routersArray[i].armarPaginasRecibidas(&Pagina);   //Obtengo una pagina si hay
-                    enviarPaginaATerminal( &Pagina, &terminalesArray[idTerminal]);        //La envio a la terminal
+                    if (retorno > 0) {
+                        enviarPaginaATerminal(&Pagina, &terminalesArray[idTerminal]);        //La envio a la terminal
+                    }
                 } while (retorno > 0);   //Si retorno una pagina hay que llamarla de nuevo por si hay otra
             }
         }

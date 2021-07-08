@@ -23,13 +23,26 @@ Router::Router(int _idRouter, int _idTerminal, int _cantEnlaces, int * matrizEnl
 //    colas_p = (Cola*) calloc(cantEnlaces+1, sizeof(Cola));
     colas_p = new Cola[cantEnlaces+1]();
 
-    //Inicializo todas las colas
+    //Inicializo todas las colas de enlaces
     for (int i = 0; i < cantEnlaces; ++i) {
         colas_p[i].setAll(idRouter, matrizEnlaces[i], matrizBandWidth[i]);
     }
 
     //Inicializo la cola propia
     colas_p[cantEnlaces].setAll(idRouter,idRouter,0);
+
+
+    //Inicializo el array de enlaces
+    enlaces = new int[cantEnlaces];
+    for (int i = 0; i < cantEnlaces; ++i) {
+        enlaces[i] = matrizEnlaces[i];
+    }
+
+    //Inicializo el array de BandWidth de los enlaces
+    bWEnlaces = new int[cantEnlaces];
+    for (int i = 0; i < cantEnlaces; ++i) {
+        bWEnlaces[i] = matrizEnlaces[i];
+    }
 }
 
 
@@ -44,15 +57,30 @@ void Router::setAll(int _idRouter, int _idTerminal, int _cantEnlaces, int * matr
     //Crear colas
     //Cola colas[cantEnlaces+1];  //Una para cada enlace y una cola propia
     //colas_p = &colas[0];
-    colas_p = (Cola*) calloc(cantEnlaces+1, sizeof(Cola));
+    //colas_p = (Cola*) calloc(cantEnlaces+1, sizeof(Cola));
+    colas_p = new Cola[cantEnlaces+1]();
 
-    //Inicializo todas las colas
+
+    //Inicializo todas las colas de enlaces
     for (int i = 0; i < cantEnlaces; ++i) {
         colas_p[i].setAll(idRouter, matrizEnlaces[i], matrizBandWidth[i]);
     }
 
+
     //Inicializo la cola propia
     colas_p[cantEnlaces].setAll(idRouter,idRouter,0);
+
+    //Inicializo el array de enlaces
+    enlaces = new int[cantEnlaces];
+    for (int i = 0; i < cantEnlaces; ++i) {
+        enlaces[i] = matrizEnlaces[i];
+    }
+
+    //Inicializo el array de BandWidth de los enlaces
+    bWEnlaces = new int[cantEnlaces];
+    for (int i = 0; i < cantEnlaces; ++i) {
+        bWEnlaces[i] = matrizEnlaces[i];
+    }
 }
 
 
@@ -145,6 +173,7 @@ void Router::reordenarColas(int * arrayCami)
     paquete auxPaq;
     int routerDestinoFinal;
     int routerDestinoSiguiente;
+    int colaRouterDestinoSiguiente;
 
     //----Reubicar de ser necesario lo que esta en todas las colas----
 
@@ -162,7 +191,7 @@ void Router::reordenarColas(int * arrayCami)
             colas_p[i].getArrayPaquetes(&arrayPaq[0], cantidadPaquetes);
 
             //Cargo todos los paquetes del array a la cola auxiliar
-            auxCola.getArrayPaquetes(&arrayPaq[0], cantidadPaquetes);
+            auxCola.agregarArrayPaquetes(&arrayPaq[0], cantidadPaquetes);
 
             //Borro todos los paquetes de la cola[i]
             colas_p[i].borrarTodo();
@@ -177,13 +206,14 @@ void Router::reordenarColas(int * arrayCami)
 
     for (int i = 0; i < sizeAuxCola && sizeAuxCola > 0; ++i)
     {
-        auxCola.getPaquete(i, &auxPaq);                         //Obtengo el paquete de la cola
+        auxCola.leerPaquete(i, &auxPaq);                        //Obtengo el paquete de la cola
         routerDestinoFinal = auxPaq.ip_destino.idRouter;        //Obtengo el destino final del paquete
         routerDestinoSiguiente = arrayCami[routerDestinoFinal]; //Veo a que router tengo que enviar el paquete
+        colaRouterDestinoSiguiente = getIndiceCola(routerDestinoSiguiente); //Obtengo el id de la cola correspondiente a ese router
         if( routerDestinoFinal == idRouter){            //Si el destino final del paquete es el propio router
-            colas_p[cantEnlaces+1].agregarPaquete(auxPaq); //Lo coloco en la cola propia
+            colas_p[cantEnlaces].agregarPaquete(auxPaq); //Lo coloco en la cola propia
         } else {        //Sino lo guardo en la cola correspondiente a ese router
-            colas_p[routerDestinoSiguiente].agregarPaquete(auxPaq); //Lo coloco en la cola correspondiente a ese router
+            colas_p[colaRouterDestinoSiguiente].agregarPaquete(auxPaq); //Lo coloco en la cola correspondiente a ese router
         }
     }
 
@@ -214,11 +244,11 @@ void Router::ordenarColas()
  * */
 int Router::armarPaginasRecibidas(pag * Pagina)
 {
-    int sizeCola = colas_p[cantEnlaces+1].sizeCola();   //Cola propia
+    int sizeCola = colas_p[cantEnlaces].sizeCola();   //Cola propia
     paquete arrayPaq[sizeCola];
 
     int retorno;
-    retorno = colas_p[cantEnlaces+1].getPaquetesPagina( &arrayPaq[0], idRouter);
+    retorno = colas_p[cantEnlaces].getPaquetesPagina( &arrayPaq[0], idRouter);
 
     if(retorno == 0){
         return 0;

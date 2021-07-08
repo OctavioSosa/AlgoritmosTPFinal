@@ -174,8 +174,8 @@ void Cola::getArrayPaquetes(paquete * paq_p, int sizeArray)
     }
 
     for (int i = 0; i < min; ++i) {
-        if(getPaquete( i, &paqAux) == -1){} //Obtengo le paquete, si da error no hago nada
-        paq_p[i] = paqAux;                  //pongo el paquete en el array
+        if(leerPaquete( i, &paqAux) == -1){} //Obtengo le paquete, si da error no hago nada
+        paq_p[i] = paqAux;                   //pongo el paquete en el array
     }
 
     return;

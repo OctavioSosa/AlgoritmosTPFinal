@@ -17,6 +17,8 @@ private:
     int cantEnlaces;//Cantidad de enlaces con otros routers y terminales
     Cola * colas_p; //Puntero a la primera cola del Array. El Array de colas
                     //se crea en el constructor. Hay una cola por cada enlace
+    int * enlaces;  //Array con los enlaces directos del roter
+    int * bWEnlaces;//Array con los bandWidth de cada enlace directo del roter
     //tablaForwarding tabla;
 
 //Funciones privadas
