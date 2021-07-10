@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
@@ -11,12 +12,14 @@
 #include "Algoritmos.h"
 #include "Files.h"
 #include "Admin.h"
+#include "Prints.h"
 
 using namespace std;
 
 #define ARCHIVO_GRAFO       "../grafo1"
 #define ARCHIVO_TERMINALES  "../Terminales1"
 #define CANTIDAD_CICLOS     10
+
 
 //Definicion de variables globales
 int cantidadRouters;
@@ -26,32 +29,6 @@ int idPagina_global= 0;
 int main() {
     int cantidadAristas;
 
-    //------prueba
-/*    Cola j(2,2,4);
-    Cola co[5];
-    Cola * h = new Cola;
-    paquete p;
-    p.numPaquete = 1;
-    p.sizePag = 5;
-    co[0].setAll(0,0,5);
-    co[0].agregarPaquete(p);
-
-    h->setAll(1,1,5);
-    h->agregarPaquete(p);
-    Router r;
-    int enlac[3]= {0,2,4};
-    int bw[3] = {5,2,5};
-    r.setAll(1,1,3, &enlac[0], &bw[0]);
-    r.enviarPaqueteACola(p,0);
-    r.enviarPaqueteACola(p,1);
-    r.enviarPaqueteACola(p,2);
-    r.enviarPaqueteACola(p,3);
-    r.enviarPaqueteACola(p,4);
-    r.enviarPaqueteACola(p,5);
-    r.enviarPaqueteACola(p,6);*/
-
-
-    //------fin prueba
 
     //-----Obtengo toda la iformacion de los archivos: grafo, terminales, cantidadTerminales, cantidadRouter, cantidadAristas-----//
 
@@ -71,12 +48,21 @@ int main() {
 
 
 
+
     //-----Creo el Administrador del Sistema-----//
 
     //Con el constructor se inicilizan las matrices: matrizCaminos, matrizCostos, matrizPaquetesEnColas
     //Incluso se calcula dijkstra pero con todas las colas vacias
     Admin adminSist( &grafo[0][0], cantidadRouters);
 
+
+    ///---Imprimo---
+    cout<<"Informacion inicial sobre el sistema:"<<endl;
+    printVar("Cantidad de Routers", cantidadRouters);
+    printVar("Cantidad de Aristas", cantidadAristas);
+    printVar("Cantidad de Terminales", cantidadTerminales);
+    cout<<endl;
+    printArray("Routers que tienen terminales", &terminalesEnlace[0], cantidadTerminales);
     adminSist.printMatrices();
 
 
@@ -125,6 +111,12 @@ int main() {
     while (contadorCiclos < CANTIDAD_CICLOS)
     {
         //-------Creacion de Paginas-------
+        ///---Imprimo---
+        printSeparador();
+        cout<<"Ciclo "<<contadorCiclos<<": "<<endl<<endl;
+        cout<<"Paginas Creadas: "<<endl;
+        cout<<"IP Origen \t\t Pagina \t IP Destino"<<endl;
+
         for (int i = 0; i < cantidadTerminales; ++i) {
             int random = rand() % 5;
             if (random == 3 ) {      //Aproximadamente en uno de cada 5 ciclos, crea una pagina, cada terminal.
@@ -133,6 +125,10 @@ int main() {
                 //Crea y envía la página
                 terminalesArray[i].crearPagina( &Pagina);       //La terminal i crea una pagina
                 routersArray[idRouter].recibirPagina( Pagina);  //Esa pagina es enviada desde la terminal hacia el router asociado a la terminal. En el router se divide en paquetes
+
+                ///---Imprimo pagina---
+                cout<<"   "<<idRouter<<"."<<i<<" -> ";
+                printPagina(&Pagina);
             }
         }
 
@@ -146,8 +142,15 @@ int main() {
             routersArray[i].reordenarColas( &arrayCaminos[0]);
         }
 
+        ///---Imprimo Colas---
+        cout<<endl;
+        printColasRouters( &routersArray[0], cantidadRouters);
+
+
 
         //-------Armado y enviado de páginas recibidas-------
+        ///---Imprimo texto de paginas---
+        cout<<"Paginas que llegaron a su destino: "<<endl;
         for (int i = 0; i < cantidadRouters; ++i) {
             int terminalId = routersArray[i].getTerminalId();
             if(terminalId >= 0) {                            //Veo si el router tiene terminal asociada
@@ -157,14 +160,20 @@ int main() {
                     retorno = routersArray[i].armarPaginasRecibidas(&Pagina);   //Obtengo una pagina si hay
                     if (retorno > 0) {
                         enviarPaginaATerminal(&Pagina, &terminalesArray[idTerminal]);        //La envio a la terminal
+                        ///---Imprimo pagina recibida---
+                        cout<<"Pagina recibida por la terminal "<<terminalId<<": ";
+                        printPagina(&Pagina);
                     }
                 } while (retorno > 0);   //Si retorno una pagina hay que llamarla de nuevo por si hay otra
             }
         }
+        cout<<endl;
 
 
         //-------Envio de Paquetes-------
         enviarPaquetes( &routersArray[0]);
+        cout<<"Enviamos los paqutes. Las colas quedan: "<<endl;
+        printColasRouters( &routersArray[0], cantidadRouters);
 
 
         //-------Recomputo de rutas------
@@ -172,6 +181,9 @@ int main() {
             adminSist.setMatrizPaquetesEnColas( &routersArray[0]);
             adminSist.setMatrizCostos();
             adminSist.setMatrizCaminos();
+
+            ///---Imprimo matrices---
+            adminSist.printMatrices();
         }
 
 
@@ -181,3 +193,7 @@ int main() {
 
     return 0;
 }
+
+
+
+

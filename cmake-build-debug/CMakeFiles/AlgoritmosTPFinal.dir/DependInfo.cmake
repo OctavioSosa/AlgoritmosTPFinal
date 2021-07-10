@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/octa/Algoritmos/AlgoritmosTPFinal/Algoritmos.cpp" "/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles/AlgoritmosTPFinal.dir/Algoritmos.cpp.o"
   "/home/octa/Algoritmos/AlgoritmosTPFinal/Cola.cpp" "/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o"
   "/home/octa/Algoritmos/AlgoritmosTPFinal/Files.cpp" "/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles/AlgoritmosTPFinal.dir/Files.cpp.o"
+  "/home/octa/Algoritmos/AlgoritmosTPFinal/Prints.cpp" "/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles/AlgoritmosTPFinal.dir/Prints.cpp.o"
   "/home/octa/Algoritmos/AlgoritmosTPFinal/Router.cpp" "/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o"
   "/home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.cpp" "/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o"
   "/home/octa/Algoritmos/AlgoritmosTPFinal/main.cpp" "/home/octa/Algoritmos/AlgoritmosTPFinal/cmake-build-debug/CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.o"

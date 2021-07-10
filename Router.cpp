@@ -247,7 +247,7 @@ int Router::armarPaginasRecibidas(pag * Pagina)
     int sizeCola = colas_p[cantEnlaces].sizeCola();   //Cola propia
     paquete arrayPaq[sizeCola];
 
-    int retorno;
+    int retorno = 0;
     retorno = colas_p[cantEnlaces].getPaquetesPagina( &arrayPaq[0], idRouter);
 
     if(retorno == 0){
@@ -416,4 +416,16 @@ void Router::enviarPaqueteACola(paquete paq, int idCola)
 int Router::getSizeCola( int idCola)
 {
     return colas_p[idCola].sizeCola();
+}
+
+/* \brief Borra los primeros n paquetes de la cola idCola*/
+void Router::borrarNPaquetesCola( int n, int idCola)
+{
+    colas_p[idCola].borrarNElementos(n);
+}
+
+/* \brief Devuelve el Id del router vecino conectado a la cola idCola*/
+int Router::getIdRouterFromCola(int idCola)
+{
+    return colas_p[idCola].getRouterDestino();
 }

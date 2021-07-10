@@ -33,6 +33,7 @@ public:
     void leerBack(struct paquete * paq);
     void popFront();
     void borrarTodo();
+    void borrarNElementos(int n);
     void popBack();
     void setBandWidth(int bandW);
     int  getBandWidth();

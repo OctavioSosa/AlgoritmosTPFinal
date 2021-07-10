@@ -41,6 +41,8 @@ public:
     void getCola(paquete * arrayPaquetes, int sizeArray, int idCola);
     void enviarPaqueteACola(paquete paq, int idCola);
     int getSizeCola( int idCola);
+    void borrarNPaquetesCola( int n, int idCola);
+    int  getIdRouterFromCola(int idCola);
 };
 
 

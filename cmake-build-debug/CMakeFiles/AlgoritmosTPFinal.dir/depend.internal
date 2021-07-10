@@ -6,6 +6,7 @@ CMakeFiles/AlgoritmosTPFinal.dir/Admin.cpp.o
  /home/octa/Algoritmos/AlgoritmosTPFinal/Admin.h
  /home/octa/Algoritmos/AlgoritmosTPFinal/Algoritmos.h
  /home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
+ /home/octa/Algoritmos/AlgoritmosTPFinal/Prints.h
  /home/octa/Algoritmos/AlgoritmosTPFinal/Router.h
  /home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.h
  /home/octa/Algoritmos/AlgoritmosTPFinal/global.h
@@ -20,6 +21,12 @@ CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o
 CMakeFiles/AlgoritmosTPFinal.dir/Files.cpp.o
  /home/octa/Algoritmos/AlgoritmosTPFinal/Files.cpp
  /home/octa/Algoritmos/AlgoritmosTPFinal/Files.h
+CMakeFiles/AlgoritmosTPFinal.dir/Prints.cpp.o
+ /home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
+ /home/octa/Algoritmos/AlgoritmosTPFinal/Prints.cpp
+ /home/octa/Algoritmos/AlgoritmosTPFinal/Prints.h
+ /home/octa/Algoritmos/AlgoritmosTPFinal/Router.h
+ /home/octa/Algoritmos/AlgoritmosTPFinal/global.h
 CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o
  /home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
  /home/octa/Algoritmos/AlgoritmosTPFinal/Router.cpp
@@ -34,6 +41,7 @@ CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.o
  /home/octa/Algoritmos/AlgoritmosTPFinal/Algoritmos.h
  /home/octa/Algoritmos/AlgoritmosTPFinal/Cola.h
  /home/octa/Algoritmos/AlgoritmosTPFinal/Files.h
+ /home/octa/Algoritmos/AlgoritmosTPFinal/Prints.h
  /home/octa/Algoritmos/AlgoritmosTPFinal/Router.h
  /home/octa/Algoritmos/AlgoritmosTPFinal/Terminales.h
  /home/octa/Algoritmos/AlgoritmosTPFinal/global.h

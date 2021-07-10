@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/AlgoritmosTPFinal.dir/Algoritmos.cpp.o"
   "CMakeFiles/AlgoritmosTPFinal.dir/Cola.cpp.o"
   "CMakeFiles/AlgoritmosTPFinal.dir/Files.cpp.o"
+  "CMakeFiles/AlgoritmosTPFinal.dir/Prints.cpp.o"
   "CMakeFiles/AlgoritmosTPFinal.dir/Router.cpp.o"
   "CMakeFiles/AlgoritmosTPFinal.dir/Terminales.cpp.o"
   "CMakeFiles/AlgoritmosTPFinal.dir/main.cpp.o"

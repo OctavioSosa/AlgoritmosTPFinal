@@ -6,6 +6,7 @@
 #include "Algoritmos.h"
 #include "Terminales.h"
 #include "Router.h"
+#include "Prints.h"
 #include<bits/stdc++.h>
 
 
@@ -124,46 +125,51 @@ void Admin::setMatrizCostos()
 
 
 void Admin::printMatrices(){
-    cout<<"Matriz Grafo:"<<endl;
+    /*printMatrizNxN("Grafo", grafo, cantRouters);
+    printMatrizNxN("Matriz Caminos", matrizCaminos, cantRouters);
+    printMatrizNxN("Matriz Costos", matrizCostos, cantRouters);
+    printMatrizNxN("Matriz Paquetes en Colas", matrizPaquetesEnColas, cantRouters);*/
+    cout<<"Matriz Grafo:\t   Matriz Caminos:\t   Matriz Costos:\t   Matriz Paquetes en Colas: "<<endl;
     for (int i = 0; i < cantRouters; ++i) {
         for (int j = 0; j < cantRouters; ++j) {
-            cout<<grafo[i*cantRouters + j]<<" ";
+            if(grafo[i*cantRouters + j] == 2147483647){
+                cout << "- ";
+            } else {
+                cout<<grafo[i*cantRouters + j]<<" ";
+            }
+        }
+        cout<<"\t\t\t";
+
+        for (int j = 0; j < cantRouters; ++j) {
+            if(matrizCaminos[i * cantRouters + j] == 2147483647){
+                cout << "- ";
+            } else {
+                cout<<matrizCaminos[i * cantRouters + j]<<" ";
+            }
+        }
+        cout<<"\t\t\t";
+
+        for (int j = 0; j < cantRouters; ++j) {
+            if(matrizCostos[i*cantRouters + j] == 2147483647){
+                cout << "- ";
+            } else {
+                cout<<matrizCostos[i*cantRouters + j]<<" ";
+            }
+        }
+        cout<<"\t\t\t";
+
+        for (int j = 0; j < cantRouters; ++j) {
+            if(matrizPaquetesEnColas[i*cantRouters + j] == 2147483647){
+                cout << "- ";
+            } else {
+                cout<<matrizPaquetesEnColas[i*cantRouters + j]<<" ";
+            }
         }
         cout<<endl;
     }
     cout<<endl;
-    cout<<endl;
-
-    cout<<"Matriz Caminos:"<<endl;
-    for (int i = 0; i < cantRouters; ++i) {
-        for (int j = 0; j < cantRouters; ++j) {
-            cout<<matrizCaminos[i * cantRouters + j]<<" ";
-        }
-        cout<<endl;
-    }
-    cout<<endl;
-    cout<<endl;
-
-    cout<<"Matriz Costos:"<<endl;
-    for (int i = 0; i < cantRouters; ++i) {
-        for (int j = 0; j < cantRouters; ++j) {
-            cout<<matrizCostos[i*cantRouters + j]<<" ";
-        }
-        cout<<endl;
-    }
-    cout<<endl;
-    cout<<endl;
 
 
-    cout<<"Matriz Paquetes en Colas:"<<endl;
-    for (int i = 0; i < cantRouters; ++i) {
-        for (int j = 0; j < cantRouters; ++j) {
-            cout<<matrizPaquetesEnColas[i*cantRouters + j]<<" ";
-        }
-        cout<<endl;
-    }
-    cout<<endl;
-    cout<<endl;
 }
 
 
@@ -190,7 +196,7 @@ void enviarPaquetes(Router * arrayRouts)
     int bandWidth;
     int idRou;
     int cantidColas;
-    int minSize;
+    int minSize=0;
     for (int i = 0; i < cantidadRouters; ++i) {     //Recorro toodo el array de routers
         cantColas = arrayRouts[i].getCantidadEnlaces()+1;
         for (int j = 0; j < cantColas-1; ++j) {       //Recorro todas la colas, excepto la cola propia
@@ -204,6 +210,7 @@ void enviarPaquetes(Router * arrayRouts)
                 paquete arrayPaquetes[bandWidth];
                 arrayRouts[i].getCola(&arrayPaquetes[0], bandWidth,
                                       j);  //pongo todos los paquetes que tiene que enviar la cola j del router i en el array de paquetes
+                arrayRouts[i].borrarNPaquetesCola(bandWidth, j); //borro los paquetes que obtuve de la cola j
 
                 //Verifico si la cola tiene mas paquetes que bandWidth
                 //minSize = arrayRouts[i].getSizeCola(j); ///(Esto ya lo hago arriba)
@@ -212,10 +219,10 @@ void enviarPaquetes(Router * arrayRouts)
                 }
 
                 //Envio los paquetes al router correspondiente
-                idRou = arrayPaquetes[0].ip_destino.idRouter;               //pregunta cual es el router destino
+                idRou = arrayRouts[i].getIdRouterFromCola(j);               //pregunta cual es el router destino
                 cantidColas = arrayRouts[idRou].getCantidadEnlaces() + 1;   //saca la cantidad de colas del router
                 for (int k = 0; k < minSize; ++k) {   //Recorro toodo el array de paquetes
-                    arrayRouts[idRou].enviarPaqueteACola(arrayPaquetes[k], cantidColas - 1); //Envio el paquete a la cola propia de ese router
+                    arrayRouts[idRou].enviarPaqueteACola(arrayPaquetes[k], cantidColas-1); //Envio el paquete a la cola propia de ese router
                 }
             }
         }

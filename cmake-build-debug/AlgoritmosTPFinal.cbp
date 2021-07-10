@@ -106,6 +106,12 @@
 		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/Files.h">
 			<Option target="AlgoritmosTPFinal"/>
 		</Unit>
+		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/Prints.cpp">
+			<Option target="AlgoritmosTPFinal"/>
+		</Unit>
+		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/Prints.h">
+			<Option target="AlgoritmosTPFinal"/>
+		</Unit>
 		<Unit filename="/home/octa/Algoritmos/AlgoritmosTPFinal/Router.cpp">
 			<Option target="AlgoritmosTPFinal"/>
 		</Unit>

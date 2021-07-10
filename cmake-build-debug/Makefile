@@ -251,6 +251,33 @@ Files.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Files.cpp.s
 .PHONY : Files.cpp.s
 
+Prints.o: Prints.cpp.o
+
+.PHONY : Prints.o
+
+# target to build an object file
+Prints.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Prints.cpp.o
+.PHONY : Prints.cpp.o
+
+Prints.i: Prints.cpp.i
+
+.PHONY : Prints.i
+
+# target to preprocess a source file
+Prints.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Prints.cpp.i
+.PHONY : Prints.cpp.i
+
+Prints.s: Prints.cpp.s
+
+.PHONY : Prints.s
+
+# target to generate assembly for a file
+Prints.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AlgoritmosTPFinal.dir/build.make CMakeFiles/AlgoritmosTPFinal.dir/Prints.cpp.s
+.PHONY : Prints.cpp.s
+
 Router.o: Router.cpp.o
 
 .PHONY : Router.o
@@ -353,6 +380,9 @@ help:
 	@echo "... Files.o"
 	@echo "... Files.i"
 	@echo "... Files.s"
+	@echo "... Prints.o"
+	@echo "... Prints.i"
+	@echo "... Prints.s"
 	@echo "... Router.o"
 	@echo "... Router.i"
 	@echo "... Router.s"

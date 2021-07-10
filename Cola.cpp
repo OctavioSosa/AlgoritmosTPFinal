@@ -200,6 +200,7 @@ int Cola::getPaquetesPagina( paquete * arrayPaq, int routDestino)
     int idPagina;
     int sizePagina;
     int indice;
+    int indiceIt = 0;
     for (int i = 0; i < cantidadElementos; ++i) {   //Recorro todos los elementos
         if (it->ip_destino.idRouter == routDestino){    //Pregunto si el destino del paquete es el del router indicado
             idPagina   = it->idPagina;
@@ -207,10 +208,16 @@ int Cola::getPaquetesPagina( paquete * arrayPaq, int routDestino)
             paquete auxPaq[sizePagina]; //Creo un array para contener todos los paquetes de esa pagina
 
             indice = 0;
+            //Cargo el primer elemento en el array
+            auxPaq[indice] = *it;
+            it++;
+            indice++;
+
+            //Cargo el resto de los elementos en el array
             for (int j = i+1; j < cantidadElementos ; ++j) {  //Recorro los paquetes siguientes a ver si pertenecen a la pagina
                 if (it->idPagina == idPagina){  //Si el paquete pertenece a la pagina
                     auxPaq[indice] = *it;        //Lo guardo en el array
-                    if (indice == sizePagina){  //Si ya cargo en el array todos los elementos de la pagina
+                    if (indice == sizePagina-1){  //Si ya cargo en el array todos los elementos de la pagina
                         arrayPaq = &auxPaq[0];      //Retorna el array en param
                         //borro todos los paquetes de la pagina
                         it = cola.begin();
@@ -235,7 +242,11 @@ int Cola::getPaquetesPagina( paquete * arrayPaq, int routDestino)
                 it++;                       //Incremento el iterador
             }
         }
-        it++;
+        indiceIt++; //Voy al elemento siguiente
+        it = cola.begin();
+        for (int j = 0; j < indiceIt; ++j) {
+            it++;
+        }
     }
 
     return 0;
@@ -271,6 +282,18 @@ void Cola::popFront()
 void Cola::borrarTodo(){
     int sizeCola = cola.size();
     for (int i = 0; i < sizeCola; ++i) {
+        cola.pop_front();
+    }
+}
+
+/* \brief Borra los primeros n elementos de la cola*/
+void Cola::borrarNElementos(int n)
+{
+    int minSize = cola.size();
+    if (n < minSize){
+        minSize = n;
+    }
+    for (int i = 0; i < minSize; ++i) {
         cola.pop_front();
     }
 }
