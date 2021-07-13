@@ -40,6 +40,7 @@ public:
     int sizeCola();
     int getRouterDestino();
     int getRouterOrigen();
+    void bucketSort();
 
     ///TODO: Ver estas funciones
     //void Ordenar();

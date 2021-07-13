@@ -68,7 +68,7 @@ void Admin::setMatrizPaquetesEnColas( Router * arrayRouters)
         }
 
         //Paquetes que tengo en la cola propia
-        matrizPaquetesEnColas[i*cantRouters + i] = arrayRouters[i].getSizeCola(cantiColas);  //Asigno la cantidad de paquetes que tengo en la cola propia
+        matrizPaquetesEnColas[i*cantRouters + i] = arrayRouters[i].getSizeCola(cantiColas-1);  //Asigno la cantidad de paquetes que tengo en la cola propia
 
     }
 }

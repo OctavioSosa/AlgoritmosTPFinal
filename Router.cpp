@@ -228,9 +228,11 @@ void Router::reordenarColas(int * arrayCami)
 
 void Router::ordenarColas()
 {
+    int sizeCola;
     for (int i = 0; i < cantEnlaces; ++i) {     //No ordeno la cola propia, no hace falta
-        //colas_p[i].
+        colas_p[i].bucketSort();
     }
+
 }
 
 /* \brief   Comprueba si hay una pagina entera en la cola propia. Si es asi la arma y la devuelve por el

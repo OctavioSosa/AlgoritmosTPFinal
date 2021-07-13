@@ -218,7 +218,10 @@ int Cola::getPaquetesPagina( paquete * arrayPaq, int routDestino)
                 if (it->idPagina == idPagina){  //Si el paquete pertenece a la pagina
                     auxPaq[indice] = *it;        //Lo guardo en el array
                     if (indice == sizePagina-1){  //Si ya cargo en el array todos los elementos de la pagina
-                        arrayPaq = &auxPaq[0];      //Retorna el array en param
+                        //Retorna el array en param
+                        for (int k = 0; k < sizePagina; ++k) {
+                            arrayPaq[k] = auxPaq[k];
+                        }
                         //borro todos los paquetes de la pagina
                         it = cola.begin();
                         int k = 0;
@@ -337,4 +340,97 @@ int Cola::getRouterDestino()
 int Cola::getRouterOrigen()
 {
     return routerOrigen;
+}
+
+/* \brief Ordena los elementos de la lista de manera intercalada, segun el id de pagina de cada elemento.
+ *        El algoritmo utilizado es Bucket Sort (ó algoritmo de ordenamiento por casilleros)*/
+void Cola::bucketSort()
+{
+    //Size
+    int sizeCola = cola.size();
+    if (sizeCola <= 2){     //Si hay menos de dos elementos, ya esta ordenada
+        return;
+    }
+    //Lista
+    list<struct paquete>::iterator it;
+    list<struct paquete>::iterator it2;
+    it = cola.begin();
+    //Buckets
+    int buckets[sizeCola][sizeCola] = {-1};
+    int idPaginas[sizeCola] = {-1};
+    int resultado[sizeCola];
+    //Indices
+    int indiceIdPag   = 0;
+    int posicionIdPag;
+    int indiceResultado;
+
+
+
+    //int indiceBuckets = 0;
+    int indicesBuckets[sizeCola] = {0};
+    //Otros
+    int auxIdPAg;
+    int maxSizeBucket;
+    paquete voidPaq;
+
+    for (int i = 0; i < sizeCola; ++i) {
+        //---Recorro cada elemento, veo el idPagina que tiene----
+        auxIdPAg = it->idPagina; //Pongo el idPagina del elemento en el aux
+
+        //Compruebo si el id pag ya esta en el array y me quedo con la posicion en la que está
+        posicionIdPag = -1;
+        for (int j = 0; idPaginas[j] == -1; ++j) {  //Recorro todos los id Paginas
+            if (idPaginas[j] == auxIdPAg){
+                posicionIdPag = j;
+            }
+        }
+        //Si no está, lo coloco en el array
+        if (posicionIdPag == -1){
+            idPaginas[indiceIdPag] = auxIdPAg;
+            posicionIdPag = indiceIdPag;
+            indiceIdPag++;
+        }
+
+
+        //---Guardo el indice del elemento en el bucket correspondiente---
+        buckets[posicionIdPag][indicesBuckets[posicionIdPag]] = i;  //Guardo el inicie en el bucket
+        indicesBuckets[posicionIdPag] += 1;                         //Incremento el indice del bucket
+
+
+        it++;
+    }
+
+    //---Acomodo todos los buckets intercalados
+    //Obtengo la cantidad de elementos del bucket mas largo
+    maxSizeBucket = 0;
+    for (int i = 0; i < indiceIdPag; ++i) {
+        if (indicesBuckets[i] > maxSizeBucket) {
+            maxSizeBucket = indicesBuckets[i];
+        }
+    }
+    maxSizeBucket--;
+
+
+    //Cargo los valores en el array Resultado
+    indiceResultado = 0;
+    for (int i = 0; i < maxSizeBucket; ++i) {             //Desde 0 hasta la cantidad de elementos del bucket mas grande
+        for (int j = 0; j <= indiceIdPag; ++j) {          //Desde 0 hasta la cantidad de idPaginas distintos
+            if (buckets[j][i] >= 0) {     //si buckets[j][i] es distinto de -1
+                resultado[indiceResultado] = buckets[j][i];     //Guardo el valor en el array
+                indiceResultado++;
+            }
+        }
+    }
+
+
+
+    //---Acomodo la lista---
+    //Copio todos los elementos al final, para no perder el orden de los indices
+    it = cola.begin();  //Apunta al principio de la cola
+    it2 = cola.end();
+    for (int i = 0; i < sizeCola; ++i) {
+
+    }
+    
+    //Borro todos los elementos del principio
 }

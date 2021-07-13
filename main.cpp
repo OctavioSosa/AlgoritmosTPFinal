@@ -110,10 +110,22 @@ int main() {
     int contadorCiclos = 0;
     while (contadorCiclos < CANTIDAD_CICLOS)
     {
-        //-------Creacion de Paginas-------
-        ///---Imprimo---
+        ///---Imprimo ciclo---
         printSeparador();
         cout<<"Ciclo "<<contadorCiclos<<": "<<endl<<endl;
+
+        //-------Ordenamiento de Colas-------
+        for (int i = 0; i < cantidadRouters; ++i) {
+            //Obtengo todos los caminos del router[i]
+            int arrayCaminos[cantidadRouters];
+            adminSist.getCaminosRouter( &arrayCaminos[0], i);
+            //reordeno todos los paquetes de las colas
+            routersArray[i].reordenarColas( &arrayCaminos[0]);
+        }
+
+
+        //-------Creacion de Paginas-------
+        ///---Imprimo---
         cout<<"Paginas Creadas: "<<endl;
         cout<<"IP Origen \t\t Pagina \t IP Destino"<<endl;
 
@@ -132,15 +144,6 @@ int main() {
             }
         }
 
-
-        //-------Ordenamiento de Colas-------
-        for (int i = 0; i < cantidadRouters; ++i) {
-            //Obtengo todos los caminos del router[i]
-            int arrayCaminos[cantidadRouters];
-            adminSist.getCaminosRouter( &arrayCaminos[0], i);
-            //reordeno todos los paquetes de las colas
-            routersArray[i].reordenarColas( &arrayCaminos[0]);
-        }
 
         ///---Imprimo Colas---
         cout<<endl;
@@ -183,6 +186,7 @@ int main() {
             adminSist.setMatrizCaminos();
 
             ///---Imprimo matrices---
+            cout<<"Recalculo las Rutas: "<<endl;
             adminSist.printMatrices();
         }
 
