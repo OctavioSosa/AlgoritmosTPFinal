@@ -217,19 +217,16 @@ void Router::reordenarColas(int * arrayCami)
         }
     }
 
-    //TODO:Ordeno cada cola para que esten listas para el envio
-    /*for (int i = 0; i < cantEnlaces; ++i) {
-        colas_p[i].ordenarCola();
-    }*/
-    //ordenarColas();
+    //Ordeno cada cola para que esten listas para el envio
+    ordenarColas();
 }
 
 
 
 void Router::ordenarColas()
 {
-    int sizeCola;
-    for (int i = 0; i < cantEnlaces; ++i) {     //No ordeno la cola propia, no hace falta
+    //int sizeCola;
+    for (int i = 0; i < cantEnlaces; ++i) {     //No ordeno la cola propia, no hace falta   ///Pongo la cola propia para que se vea
         colas_p[i].bucketSort();
     }
 

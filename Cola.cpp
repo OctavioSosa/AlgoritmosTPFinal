@@ -73,7 +73,7 @@ void Cola::agregarArrayPaquetes(paquete * paq_p, int sizeArray)
         paq.idPagina    = paq_p[i].idPagina;
         paq.sizePag     = paq_p[i].sizePag;
         //paq = paq_p[i];
-        cola.push_front(paq);
+        cola.push_back(paq);
         //paq_p++;
     }
 }
@@ -354,10 +354,14 @@ void Cola::bucketSort()
     //Lista
     list<struct paquete>::iterator it;
     list<struct paquete>::iterator it2;
+    list<struct paquete>::iterator itAux;
     it = cola.begin();
     //Buckets
-    int buckets[sizeCola][sizeCola] = {-1};
-    int idPaginas[sizeCola] = {-1};
+    list<struct paquete>::iterator buckets[sizeCola][sizeCola] = {itAux};   //Es un array de iteradores, no de elementos
+    int idPaginas[sizeCola];
+    for (int i = 0; i < sizeCola; ++i) {
+        idPaginas[i] = -1;
+    }
     int resultado[sizeCola];
     //Indices
     int indiceIdPag   = 0;
@@ -371,7 +375,7 @@ void Cola::bucketSort()
     //Otros
     int auxIdPAg;
     int maxSizeBucket;
-    paquete voidPaq;
+    paquete auxPaq;
 
     for (int i = 0; i < sizeCola; ++i) {
         //---Recorro cada elemento, veo el idPagina que tiene----
@@ -379,7 +383,7 @@ void Cola::bucketSort()
 
         //Compruebo si el id pag ya esta en el array y me quedo con la posicion en la que está
         posicionIdPag = -1;
-        for (int j = 0; idPaginas[j] == -1; ++j) {  //Recorro todos los id Paginas
+        for (int j = 0; idPaginas[j] != -1; ++j) {  //Recorro todos los id Paginas
             if (idPaginas[j] == auxIdPAg){
                 posicionIdPag = j;
             }
@@ -392,8 +396,8 @@ void Cola::bucketSort()
         }
 
 
-        //---Guardo el indice del elemento en el bucket correspondiente---
-        buckets[posicionIdPag][indicesBuckets[posicionIdPag]] = i;  //Guardo el inicie en el bucket
+        //---Guardo el elemento en el bucket correspondiente---
+        buckets[posicionIdPag][indicesBuckets[posicionIdPag]] = it; //Guardo el puntero iterador en el bucket
         indicesBuckets[posicionIdPag] += 1;                         //Incremento el indice del bucket
 
 
@@ -408,29 +412,32 @@ void Cola::bucketSort()
             maxSizeBucket = indicesBuckets[i];
         }
     }
-    maxSizeBucket--;
 
 
-    //Cargo los valores en el array Resultado
-    indiceResultado = 0;
+    //---Cargo los valores en la lista---
+    //Copio todos los elementos al final, para no perder el orden
     for (int i = 0; i < maxSizeBucket; ++i) {             //Desde 0 hasta la cantidad de elementos del bucket mas grande
-        for (int j = 0; j <= indiceIdPag; ++j) {          //Desde 0 hasta la cantidad de idPaginas distintos
-            if (buckets[j][i] >= 0) {     //si buckets[j][i] es distinto de -1
-                resultado[indiceResultado] = buckets[j][i];     //Guardo el valor en el array
-                indiceResultado++;
+        for (int j = 0; j < indiceIdPag; ++j) {          //Desde 0 hasta la cantidad de idPaginas distintos
+            if (buckets[j][i] != itAux) {     //si buckets[j][i] es distinto del valor de inicializacion
+                //it = cola.end();                                //Apunto al elemento que acabo de crear
+                it2 = buckets[j][i];                            //Apunto al elemento que va en la primera posicion
+                //swap(*it, *it2);                            //Lo swapeo con el elemento correspodiente
+                //Lo copio al ultimo elemento
+                auxPaq.idPagina              = it2->idPagina;
+                auxPaq.numPaquete            = it2->numPaquete;
+                auxPaq.sizePag               = it2->sizePag;
+                auxPaq.ip_destino.idRouter   = it2->ip_destino.idRouter;
+                auxPaq.ip_destino.idTerminal = it2->ip_destino.idTerminal;
+                auxPaq.ip_origen.idRouter    = it2->ip_origen.idRouter;
+                auxPaq.ip_origen.idTerminal  = it2->ip_origen.idTerminal;
+                cola.push_back(auxPaq);                        //Agrego el elemento a la lista
             }
         }
     }
 
-
-
-    //---Acomodo la lista---
-    //Copio todos los elementos al final, para no perder el orden de los indices
-    it = cola.begin();  //Apunta al principio de la cola
-    it2 = cola.end();
+    //Borro los primeros elementos de la lista
     for (int i = 0; i < sizeCola; ++i) {
-
+        cola.pop_front();
     }
     
-    //Borro todos los elementos del principio
 }

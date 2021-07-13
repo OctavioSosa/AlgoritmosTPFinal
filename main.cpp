@@ -98,12 +98,18 @@ int main() {
     }
 
     //-------Creo una pagina en cada terminal para arrancar-------
-    /*for (int i = 0; i < cantidadTerminales ; ++i) {
+    /*///---Imprimo---
+    cout<<"Paginas Creadas Forzadamente: "<<endl;
+    cout<<"IP Origen \t\t Pagina \t IP Destino"<<endl;
+    for (int i = 0; i < cantidadTerminales ; ++i) {
         int idRouter = terminalesArray[i].getIdRouter();
         pag Pagina;
         terminalesArray[i].crearPagina( &Pagina);
         routersArray[idRouter].recibirPagina( Pagina);
-    }*/
+        ///---Imprimo pagina---
+        cout<<"   "<<idRouter<<"."<<i<<" -> ";
+        printPagina(&Pagina);
+    }*/ 
 
 
     //-------Ciclos-------//
@@ -174,7 +180,7 @@ int main() {
 
 
         //-------Envio de Paquetes-------
-        enviarPaquetes( &routersArray[0]);
+        //enviarPaquetes( &routersArray[0]);
         cout<<"Enviamos los paqutes. Las colas quedan: "<<endl;
         printColasRouters( &routersArray[0], cantidadRouters);
 
