@@ -180,7 +180,7 @@ int main() {
 
 
         //-------Envio de Paquetes-------
-        //enviarPaquetes( &routersArray[0]);
+        enviarPaquetes( &routersArray[0]);
         cout<<"Enviamos los paqutes. Las colas quedan: "<<endl;
         printColasRouters( &routersArray[0], cantidadRouters);
 

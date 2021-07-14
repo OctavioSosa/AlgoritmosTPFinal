@@ -8,10 +8,10 @@ CFLAGS = -Wall #-g
 # Targets needed to bring the executable up to date
 all: main
 
-main: main.o Router.o Terminales.o Cola.o Algoritmos.o Files.o Admin.o
-	$(CC) $(CFLAGS) -o main main.o Router.o Terminales.o Cola.o Algoritmos.o Files.o Admin.o
+main: main.o Router.o Terminales.o Cola.o Algoritmos.o Files.o Admin.o Prints.o
+	$(CC) $(CFLAGS) -o main main.o Router.o Terminales.o Cola.o Algoritmos.o Files.o Admin.o Prints.o
 
-main.o: main.cpp global.h Router.h Terminales.h Cola.h Algoritmos.h Files.h Admin.h
+main.o: main.cpp global.h Router.h Terminales.h Cola.h Algoritmos.h Files.h Admin.h Prints.h
 	$(CC) $(CFLAGS) -c main.cpp
 
 Router.o: Router.cpp global.h Cola.h
@@ -31,6 +31,9 @@ Files.o: Files.cpp
 
 Admin.o: Admin.cpp  Algoritmos.h Terminales.h
 	$(CC) $(CFLAGS) -c Admin.cpp
+
+Prints.o: Prints.cpp global.h Router.h
+	$(CC) $(CFLAGS) -c Prints.cpp
 
 clean:
 	rm *.o main

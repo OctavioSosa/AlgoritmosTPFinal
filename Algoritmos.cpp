@@ -30,21 +30,25 @@ void dijkstra(int * arrayCaminos, int sizeArray, int src, int _cantNodos, int *c
     cantNodos = _cantNodos;     //Seteo la variable global cantidad de nodos
 
     int dist[cantNodos];        //Distancia entre el nodo source y cada uno de los nodos
-    int par[cantNodos];         //par[i] contiene el nodo anterior al nodo i. Para llegar al nodo i el camino mas corto es par[i]
+    int par[cantNodos];         //par[i] contiene el nodo anterior al nodo i. Para llegar al nodo i el camino mas corto es par[i] (par significa parent(nodo padre))
    //int cost[cantNodos][cantNodos]; //Es una matriz que explicita el peso de las aristas entre nodos. Si es infinito no hay aristas, si es 0 es el mismo
                                      // nodo, si hay un numero en cost[i][j] es el peso de la arista entre el nodo i y el nodo j (cost[i][j] = cost[j][i])
                                      //Aclaracion: como recibimos un puntero: cost[i][j] = cost [i*cantNodos + j]
     bool visited[100] = {0} ;   //Array de nodos visitados, inicializa todos en cero (ningun nodo fue visitado)
 
-    fill(dist , dist+cantNodos  , INT_MAX ) ; //Llena el rango desde dist hasta dist+cantidad de aristas con el maximo valor para un entero
+    fill(dist , dist+cantNodos  , INT_MAX ) ; //Setea el array dist con todos infinitos
 
     dist[src] = 0 ;     //No hay distancia con sigo mismo
-    par[src]  = -1 ;
+    par[src]  = -1 ;    //No tiene nodo anterior
 
-    for(int g = 0  ; g < cantNodos-1 ; g++){
-        int u = getMin( dist, visited);     //Obtengo el indice del nodo de menor distancia
+    for(int g = 0  ; g < cantNodos-1 ; g++){    //Analizamos todos los nodos (dentro del for se esta analizando el nodo g)
+
+        //u es el nodo adyacente
+        int u = getMin( dist, visited);     //Obtengo el indice del nodo de menor distancia  al nodo g
         visited[u] = true ;                 //Coloco este nodo como visitado
         //cout<< " min = " << u <<endl;
+
+        //Analizo que no haya ningun nodo mejor que u
         for(int v = 0 ; v < cantNodos ; v++){
             if(!visited[v] && (dist[u]+cost[u*cantNodos + v]) <  dist[v] && cost[u*cantNodos + v] != INT_MAX) {    //Pregunto si el nodo no fue visitado &&
                                                                                              //Compruebo que la distancia del nodo v(nodo adyacente (el nodo que estoy evaluando)), es mayor que la distancia del nodo u (nodo mas cercano) + el costo
@@ -64,7 +68,7 @@ void dijkstra(int * arrayCaminos, int sizeArray, int src, int _cantNodos, int *c
 /* \brief   Obtiene el nodo que tiene la distancia mínima. Solo tiene en cuenta
  *          los nodos que no han sido visitados
  *  \param  dist: Array de las distancias entre los nodos y el nodo source
- *  \param  visited: Nodos que han sido visitados                   //todo ver que es visitados
+ *  \param  visited: Nodos que han sido visitados
  *  \return Retorna el indice del nodo que tiene la menor distancia.
  * */
 int getMin(int dist[] , bool visited[]){

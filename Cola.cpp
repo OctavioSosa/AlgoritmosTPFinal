@@ -362,11 +362,9 @@ void Cola::bucketSort()
     for (int i = 0; i < sizeCola; ++i) {
         idPaginas[i] = -1;
     }
-    int resultado[sizeCola];
     //Indices
     int indiceIdPag   = 0;
     int posicionIdPag;
-    int indiceResultado;
 
 
 
